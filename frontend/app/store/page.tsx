@@ -186,7 +186,7 @@ function OverdueTicket({ loan, rug, now, win }: { loan: Loan; rug?: Rug; now: bi
         <KV k="Weaver">
           <Party address={loan.weaver} />
         </KV>
-        <KV k="Investor">{loan.investor ? <Party address={loan.investor} /> : "â€”"}</KV>
+        <KV k="Investor">{loan.investor ? <Party address={loan.investor} /> : "—"}</KV>
         <KV k="Was due">
           <span className="mono">{whenSec(loan.end_at!)}</span>
         </KV>
@@ -297,7 +297,7 @@ function IssueForm({ store, data }: { store: Store; data: Ledger }) {
               className="input mono"
               value={pasted}
               onChange={(e) => setPasted(e.target.value)}
-              placeholder="Gâ€¦"
+              placeholder="G…"
               aria-invalid={pasted !== "" && !weaverOk}
               spellCheck={false}
             />
@@ -316,7 +316,7 @@ function IssueForm({ store, data }: { store: Store; data: Ledger }) {
             className="input"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            placeholder="Hand-knotted wool, madder red field, 160 Ã— 230 cm"
+            placeholder="Hand-knotted wool, madder red field, 160 × 230 cm"
             aria-invalid={description !== "" && !descOk}
           />
           <span className="hint">
@@ -334,7 +334,7 @@ function IssueForm({ store, data }: { store: Store; data: Ledger }) {
           />
           <span className="hint">
             {priceOk ? (
-              <span className="mono">â‰ˆ {formatLocal(units!)} TRY</span>
+              <span className="mono">≈ {formatLocal(units!)} TRY</span>
             ) : (
               <span className="error-text">{units === 0n ? "Enter a price above zero." : amountProblem(price)}</span>
             )}{" "}
