@@ -1,0 +1,15 @@
+node_modules/
+.cache/
+
+# Raw capture frames (rebuilt by `npm run capture`); the assembled clip.mp4,
+# frames.json and the event logs are committed so the film re-renders from git.
+assets/**/frames/
+assets/**/seq/
+assets/clips/rug-timeline/
+assets/*.webm
+assets/*.wav
+assets/audio/*.wav
+
+# Scratch renders
+out/draft-*.mp4
+out/*.tmp.mp4

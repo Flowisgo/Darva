@@ -1,0 +1,36 @@
+{
+  "name": "rugdealer-demo-video",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "wallet:setup": "node capture/wallet-setup.mjs",
+    "capture": "node capture/run.mjs all",
+    "verify": "node capture/verify.mjs",
+    "timeline": "node scripts/timeline-report.mjs",
+    "render": "node scripts/render.mjs master && node scripts/render.mjs poster",
+    "render:narrated": "node scripts/render.mjs narrated",
+    "review": "node scripts/review.mjs",
+    "narration:check": "powershell -ExecutionPolicy Bypass -File scripts/narration-timing.ps1",
+    "studio": "remotion studio src/index.ts",
+    "typecheck": "tsc --noEmit -p .",
+    "all": "npm run capture && npm run verify && npm run render && npm run review"
+  },
+  "devDependencies": {
+    "@types/react": "19.3.0",
+    "playwright": "1.65.0",
+    "typescript": "7.0.2"
+  },
+  "dependencies": {
+    "@remotion/bundler": "4.0.543",
+    "@remotion/cli": "4.0.543",
+    "@remotion/google-fonts": "4.0.543",
+    "@remotion/renderer": "4.0.543",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "remotion": "4.0.543"
+  },
+  "allowScripts": {
+    "esbuild@0.28.1": true
+  },
+  "description": "RugDealer 60-second demo video: Playwright capture of the real app + Varial on Stellar Testnet, cut in Remotion."
+}

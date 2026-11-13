@@ -1,0 +1,74 @@
+1
+00:00:00,150 --> 00:00:02,850
+A buyer would pay about 1,500 USDC for Ayşe's rug.
+Finding that buyer takes months.
+
+2
+00:00:02,850 --> 00:00:05,600
+The store will pay 600 today.
+She needs the cash, so she sells cheap.
+
+3
+00:00:05,700 --> 00:00:08,000
+RugDealer: she borrows that price instead,
+and keeps the rug until a real buyer comes.
+
+4
+00:00:08,020 --> 00:00:11,020
+Kaya Rug House holds the rug and writes its certificate
+at 600 USDC, its own buying price.
+
+5
+00:00:11,020 --> 00:00:13,620
+Each step is signed in a real wallet.
+Network fee: 0.0058 XLM, a fraction of a cent.
+
+6
+00:00:13,620 --> 00:00:16,920
+Certificate No. 0005 now lives in the contract.
+Ayşe owns it. The store keeps the rug safe.
+
+7
+00:00:16,930 --> 00:00:19,930
+Ayşe borrows the store's price for 6 months.
+In this demo, 1 month lasts 1 minute.
+
+8
+00:00:19,930 --> 00:00:25,330
+Fees come off once: she receives 540.00 USDC today,
+≈ 24,300 TRY, and the rug is still hers.
+
+9
+00:00:25,430 --> 00:00:31,030
+Deniz funds the whole loan in one transaction,
+and will get back 645.00 USDC.
+
+10
+00:00:31,550 --> 00:00:35,450
+A buyer turns up: she repays 600 USDC.
+The loan cost her 60, not the 900 lost selling cheap.
+
+11
+00:00:35,450 --> 00:00:39,750
+To collect the rug she signs her half,
+then Kaya Rug House co-signs.
+
+12
+00:00:39,750 --> 00:00:44,050
+Two signatures close the certificate.
+The rug goes home with Ayşe.
+
+13
+00:00:44,070 --> 00:00:47,670
+No repayment? The store must buy the rug
+at the price it set. The contract enforces it.
+
+14
+00:00:47,670 --> 00:00:51,370
+That's why it can't lowball her,
+and the investor is repaid from the purchase.
+
+15
+00:00:51,450 --> 00:00:55,450
+Every step above is a Testnet transaction.
+Each line here links to its own.

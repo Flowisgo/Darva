@@ -1,0 +1,77 @@
+# RugDealer demo video
+
+A 60-second film of the working prototype: the real app (production build) driven by Playwright, every signature approved in the real **Varial** wallet, every action a real transaction on **Stellar Testnet**. The cut is a Remotion composition keyed to the capture logs, so it re-renders from git.
+
+| File | What it is |
+|---|---|
+| [`out/rugdealer-demo-60s.mp4`](out/rugdealer-demo-60s.mp4) | Master: 59.58 s, 1920×1080, 60 fps, H.264 `yuv420p`, CRF 18, `+faststart`, **silent**, captions burned in. Plays under the live pitch. |
+| [`out/rugdealer-demo-60s.srt`](out/rugdealer-demo-60s.srt) | The same captions as subtitles, generated from the timeline |
+| [`out/poster.jpg`](out/poster.jpg) | 1920×1080 thumbnail for Devpost (a real frame of Ayşe's fee breakdown) |
+| [`out/contact-sheet.jpg`](out/contact-sheet.jpg) | One frame every 2 s, timecoded, in one image |
+| [`storyboard.md`](storyboard.md) | Beat sheet and rubric → timestamp table |
+| [`narration.md`](narration.md) | Voice-over script with timecodes, for the presenter |
+| [`verification.md`](verification.md) | Every transaction hash, its ledger and close time, and the contract read-back of every captioned figure |
+
+## Re-render after a copy change
+
+Captions, cuts, speeds and rings live in [`src/timeline.ts`](src/timeline.ts). Edit, then:
+
+```bash
+cd video
+npm install          # once
+npm run render       # master + srt + poster, then checks duration, size, fps, pixel format, no audio, faststart
+npm run review       # contact sheet + per-beat sheets + 480p and phone-size frames in .cache/review
+```
+
+`npm run timeline` prints every beat and segment with its output timecodes, which is the quickest way to see what a change did to the total (it must stay between 58.0 and 60.0 s; `render` fails otherwise).
+
+Rendering needs only Node 20+; Remotion brings its own Chromium and ffmpeg. The committed clips in `assets/clips/*/clip.mp4` are the source footage. A render takes about 10 minutes on a laptop.
+
+## Narrated master
+
+There is no narrated master in `out/`, on purpose. The only text-to-speech on the capture machine is the 2012-era Windows SAPI voices, which sound robotic and can't say "Ayşe"; the brief says a bad robot voice is worse than none. To make one:
+
+1. Record [`narration.md`](narration.md) against the silent master (one take, 48 kHz WAV, starting at 0.0 s). `npm run narration:check` writes a synthetic guide track to rehearse against if you pass `-Wav`.
+2. Save it as `assets/audio/narration.wav`.
+3. `npm run render:narrated` → `out/rugdealer-demo-60s-narrated.mp4` (same timeline, AAC audio, same checks).
+
+## Re-capture (new footage)
+
+Only needed if the app's screens change. It sends about a dozen real Testnet transactions and takes about 8 minutes.
+
+Prerequisites: the demo identities in `~/.rugdealer-demo/config` (see [`docs/testnet-demo.md`](../docs/testnet-demo.md)), Varial installed in Chrome (its unpacked copy is taken from your Chrome profile), the Stellar CLI, ffmpeg on PATH or from winget, and the app's production build running:
+
+```bash
+cd frontend && npm run build && npx next start --port 3100   # production: no dev indicator
+cd video
+npx playwright install chromium   # once
+cp -r "<Chrome profile>/Extensions/bcacfldlkkdogcmkkibnjlakofdplcbk/<version>" ~/.rugdealer-demo/varial-ext   # once
+npm run wallet:setup   # once: throwaway Varial wallet in ~/.rugdealer-demo/varial-profile, Testnet, three demo accounts imported
+npm run capture        # records every beat into assets/clips, logs into capture/logs
+npm run verify         # Horizon + contract read-back; rewrites verification.md
+npm run render
+```
+
+Then check the markers still exist (`npm run timeline` throws on a missing one) and look at the review frames: element positions can move if the app's layout changed, and some rings use boxes measured from frames (marked in `timeline.ts`).
+
+### How the capture works
+
+- **Browser.** Playwright's Chromium, headed, with Varial loaded unpacked (`--load-extension`) into a persistent profile under `~/.rugdealer-demo/`. Viewport 1440×810 CSS px at a device scale of 4/3, so the app renders natively at 1920×1080 with its text a third larger than a 1920-wide window would show it.
+- **Wallet.** `wallet-setup.mjs` creates a throwaway Varial wallet (random password kept in `~/.rugdealer-demo/varial-password`), switches it to Testnet and imports the store, weaver and investor identities. Secret keys go from `stellar keys secret` straight into Varial's password field; they are never printed, logged, screenshotted or recorded, and no recording runs during setup.
+- **Signatures.** When the app asks Varial to sign, Varial opens its own popup page. `run.mjs` catches it, records it, and clicks **Confirm** in it like a person. The Varial windows in the film are those recordings, floated beside the app.
+- **Recording.** CDP `Page.startScreencast` (JPEG frames with timestamps), resampled to an exact constant 60 fps, so clip time maps 1:1 to the wall-clock event logs. Playwright's own recorder is about 25 fps.
+- **Pointer.** Playwright video doesn't show the mouse, so the capture logs every pointer position, click and element box; the composition draws the cursor, click ripples and highlight rings from those logs.
+- **Capture-only styling.** An init script hides scrollbars and the text caret on the app's origin, in the capture browser only. The app itself is unchanged.
+- **Transaction hashes** come from the app's own `sendTransaction` responses, recorded during the click.
+
+### Known limits
+
+- Network waits are sped up (8–10×) with a chip that shows the measured send-to-confirmed time; nothing is frozen or faked.
+- The buy-out beat is a second rug (No. 0006) on a 1-month loan, staged off camera (issue, borrow, fund) so its 60-second window opens on cue. The chip says so.
+- The investor's wallet chip isn't on screen when the balance drops (the page is scrolled to the loan); the loan turning *Running* and the /activity line "The weaver received 540.00 USDC" show the funding instead.
+- Varial displays the address, not the account name, in its popups.
+- The app ran at `localhost:3100`, so Varial's popups say "localhost".
+
+### One app change on this branch
+
+`frontend/app/store/page.tsx` had double-encoded UTF-8 in four strings, so the store desk showed `â‰ˆ 27,000 TRY` under the price field (plus `â€”` and `Gâ€¦` elsewhere). Commit `72061c1` repairs them to `≈`, `—`, `…` and `×`. It is a display fix, not a filming gate, and the film shows the fixed page. **The live Vercel app still has the bug until it is redeployed from this branch.** Nothing else in the app changed.

@@ -1,0 +1,319 @@
+{
+ "checkedAt": "2026-11-13T00:05:17.396Z",
+ "contract": "CCX3Z3DJ7KS6YCSWQCIOJWFZCB76A7SD7LJI6BHDILO5FGSI6ZJJ4M2J",
+ "txs": [
+  {
+   "beat": "phase0-probe",
+   "hash": "4c682902af422e437bdb6d5dd031db488cf5150e67d5f7e5ba8017313718c8f1",
+   "found": true,
+   "successful": true,
+   "ledger": 5700501,
+   "created_at": "2026-11-12T23:29:09Z",
+   "source": "GBWCNPACZXNZKJKB7NA2EHRCZTNWT3LQBEHTYPTVF5X6VZNU5RXPPLCN",
+   "fee_charged_xlm": 0.0046781,
+   "op_type": "invoke_host_function",
+   "fn": "mint_rug",
+   "contract_called": true,
+   "onScreen": false
+  },
+  {
+   "beat": "rehearse-handover",
+   "hash": "eaa96e66e828277a66418e9fdbad050e0e827ae7017aabc9414b1e19e6255eb4",
+   "found": true,
+   "successful": true,
+   "ledger": 5700575,
+   "created_at": "2026-11-12T23:35:19Z",
+   "source": "GBWCNPACZXNZKJKB7NA2EHRCZTNWT3LQBEHTYPTVF5X6VZNU5RXPPLCN",
+   "fee_charged_xlm": 0.0009711,
+   "op_type": "invoke_host_function",
+   "fn": "redeem",
+   "contract_called": true,
+   "onScreen": false
+  },
+  {
+   "beat": "store-issue",
+   "hash": "9f73bbb05f7d4116837f750939552839da3036e5af900b0abdfef56494f96083",
+   "status": "PENDING",
+   "at": "2026-11-12T23:38:54.591Z",
+   "found": true,
+   "successful": true,
+   "ledger": 5700619,
+   "created_at": "2026-11-12T23:38:59Z",
+   "source": "GBWCNPACZXNZKJKB7NA2EHRCZTNWT3LQBEHTYPTVF5X6VZNU5RXPPLCN",
+   "fee_charged_xlm": 0.0046781,
+   "op_type": "invoke_host_function",
+   "fn": "mint_rug",
+   "contract_called": true,
+   "onScreen": true
+  },
+  {
+   "beat": "weaver-borrow",
+   "hash": "3cb5d9222ed397bb748f75d40c693ab9940d531c4cb1ce6f3ba1be52777a970f",
+   "status": "PENDING",
+   "at": "2026-11-12T23:40:05.453Z",
+   "found": true,
+   "successful": true,
+   "ledger": 5700633,
+   "created_at": "2026-11-12T23:40:09Z",
+   "source": "GBH4TKU2HPW7PGY5BCDU73E3PMZUK7TQ7RVDHP5QDTK23BHKW2XDGOQF",
+   "fee_charged_xlm": 0.0074412,
+   "op_type": "invoke_host_function",
+   "fn": "request_loan",
+   "contract_called": true,
+   "onScreen": true
+  },
+  {
+   "beat": "investor-lend",
+   "hash": "35f571fba9c78e2eb07e1184a3fee77f2988eeb386a970c99f2f8977afa9e711",
+   "status": "PENDING",
+   "at": "2026-11-12T23:40:58.592Z",
+   "found": true,
+   "successful": true,
+   "ledger": 5700644,
+   "created_at": "2026-11-12T23:41:04Z",
+   "source": "GCVBINDMVFUMQ3OBUVQGE6RFBWWBHSRKSLEQVZ6I7XQNQR2424HQOA2W",
+   "fee_charged_xlm": 0.002563,
+   "op_type": "invoke_host_function",
+   "fn": "fund_loan",
+   "contract_called": true,
+   "onScreen": true
+  },
+  {
+   "beat": "weaver-repay",
+   "hash": "d08d6b083af8d17d12061e0c0771943d70273e92d5427b25d5cdae575a6c6692",
+   "status": "PENDING",
+   "at": "2026-11-12T23:45:29.227Z",
+   "found": true,
+   "successful": true,
+   "ledger": 5700698,
+   "created_at": "2026-11-12T23:45:34Z",
+   "source": "GBH4TKU2HPW7PGY5BCDU73E3PMZUK7TQ7RVDHP5QDTK23BHKW2XDGOQF",
+   "fee_charged_xlm": 0.0015672,
+   "op_type": "invoke_host_function",
+   "fn": "repay",
+   "contract_called": true,
+   "onScreen": true
+  },
+  {
+   "beat": "store-handover",
+   "hash": "8bfa11eecc0f43a77005e03c59956be3f1553fc7a9360eaf167d3098a1ff2996",
+   "status": "PENDING",
+   "at": "2026-11-12T23:46:30.216Z",
+   "found": true,
+   "successful": true,
+   "ledger": 5700710,
+   "created_at": "2026-11-12T23:46:34Z",
+   "source": "GBWCNPACZXNZKJKB7NA2EHRCZTNWT3LQBEHTYPTVF5X6VZNU5RXPPLCN",
+   "fee_charged_xlm": 0.0009711,
+   "op_type": "invoke_host_function",
+   "fn": "redeem",
+   "contract_called": true,
+   "onScreen": true
+  },
+  {
+   "beat": "stage-buyout",
+   "hash": "d330f5904703deea11a98fa975a6f585dc979c0cca990d65972ab242325cadff",
+   "status": "PENDING",
+   "at": "2026-11-12T23:47:36.700Z",
+   "found": true,
+   "successful": true,
+   "ledger": 5700723,
+   "created_at": "2026-11-12T23:47:39Z",
+   "source": "GBWCNPACZXNZKJKB7NA2EHRCZTNWT3LQBEHTYPTVF5X6VZNU5RXPPLCN",
+   "fee_charged_xlm": 0.0046363,
+   "op_type": "invoke_host_function",
+   "fn": "mint_rug",
+   "contract_called": true,
+   "onScreen": false
+  },
+  {
+   "beat": "stage-buyout",
+   "hash": "f71434974fd32d437669b48125f6549ff4252ced2c657ad7f065e369e373a9ff",
+   "status": "PENDING",
+   "at": "2026-11-12T23:48:57.916Z",
+   "found": true,
+   "successful": true,
+   "ledger": 5700739,
+   "created_at": "2026-11-12T23:48:59Z",
+   "source": "GBH4TKU2HPW7PGY5BCDU73E3PMZUK7TQ7RVDHP5QDTK23BHKW2XDGOQF",
+   "fee_charged_xlm": 0.007441,
+   "op_type": "invoke_host_function",
+   "fn": "request_loan",
+   "contract_called": true,
+   "onScreen": false
+  },
+  {
+   "beat": "stage-buyout",
+   "hash": "593bfb22b8ba3465f082dca1332e23530178740e57875b2ab44db8a243ba97d4",
+   "status": "PENDING",
+   "at": "2026-11-12T23:49:15.468Z",
+   "found": true,
+   "successful": true,
+   "ledger": 5700743,
+   "created_at": "2026-11-12T23:49:19Z",
+   "source": "GCVBINDMVFUMQ3OBUVQGE6RFBWWBHSRKSLEQVZ6I7XQNQR2424HQOA2W",
+   "fee_charged_xlm": 0.0025628,
+   "op_type": "invoke_host_function",
+   "fn": "fund_loan",
+   "contract_called": true,
+   "onScreen": false
+  },
+  {
+   "beat": "buyout",
+   "hash": "6b6dfe02704a71503b7a5eeccd8a00ba22757cafcbdc581e03df452c55c09b9f",
+   "status": "PENDING",
+   "at": "2026-11-12T23:50:35.471Z",
+   "found": true,
+   "successful": true,
+   "ledger": 5700759,
+   "created_at": "2026-11-12T23:50:39Z",
+   "source": "GBWCNPACZXNZKJKB7NA2EHRCZTNWT3LQBEHTYPTVF5X6VZNU5RXPPLCN",
+   "fee_charged_xlm": 0.001609,
+   "op_type": "invoke_host_function",
+   "fn": "store_buyout",
+   "contract_called": true,
+   "onScreen": true
+  }
+ ],
+ "loans": {
+  "happy": {
+   "end_at": 1794527224,
+   "funded_at": 1794526864,
+   "id": 4,
+   "interest": "450000000",
+   "investor": "GCVBINDMVFUMQ3OBUVQGE6RFBWWBHSRKSLEQVZ6I7XQNQR2424HQOA2W",
+   "months": 6,
+   "platform_fee": "60000000",
+   "principal": "6000000000",
+   "requested_at": 1794526809,
+   "rug_id": 5,
+   "status": "Repaid",
+   "store": "GBWCNPACZXNZKJKB7NA2EHRCZTNWT3LQBEHTYPTVF5X6VZNU5RXPPLCN",
+   "store_fee": "90000000",
+   "weaver": "GBH4TKU2HPW7PGY5BCDU73E3PMZUK7TQ7RVDHP5QDTK23BHKW2XDGOQF",
+   "weaver_payout": "5400000000"
+  },
+  "buy": {
+   "end_at": 1794527419,
+   "funded_at": 1794527359,
+   "id": 5,
+   "interest": "75000000",
+   "investor": "GCVBINDMVFUMQ3OBUVQGE6RFBWWBHSRKSLEQVZ6I7XQNQR2424HQOA2W",
+   "months": 1,
+   "platform_fee": "60000000",
+   "principal": "6000000000",
+   "requested_at": 1794527339,
+   "rug_id": 6,
+   "status": "BoughtOut",
+   "store": "GBWCNPACZXNZKJKB7NA2EHRCZTNWT3LQBEHTYPTVF5X6VZNU5RXPPLCN",
+   "store_fee": "15000000",
+   "weaver": "GBH4TKU2HPW7PGY5BCDU73E3PMZUK7TQ7RVDHP5QDTK23BHKW2XDGOQF",
+   "weaver_payout": "5850000000"
+  }
+ },
+ "rugs": {
+  "rugHappy": {
+   "description": "Wool kilim, madder red field, 160 × 230 cm",
+   "id": 5,
+   "owner": "GBH4TKU2HPW7PGY5BCDU73E3PMZUK7TQ7RVDHP5QDTK23BHKW2XDGOQF",
+   "price": "6000000000",
+   "status": "Redeemed",
+   "store": "GBWCNPACZXNZKJKB7NA2EHRCZTNWT3LQBEHTYPTVF5X6VZNU5RXPPLCN"
+  },
+  "rugBuy": {
+   "description": "Wool kilim, indigo border, 120 × 180 cm",
+   "id": 6,
+   "owner": "GBWCNPACZXNZKJKB7NA2EHRCZTNWT3LQBEHTYPTVF5X6VZNU5RXPPLCN",
+   "price": "6000000000",
+   "status": "Free",
+   "store": "GBWCNPACZXNZKJKB7NA2EHRCZTNWT3LQBEHTYPTVF5X6VZNU5RXPPLCN"
+  }
+ },
+ "expect": [
+  [
+   "Rug No. 0005 price",
+   "600.00",
+   "600.00"
+  ],
+  [
+   "Rug No. 0005 status after the hand-over",
+   "Redeemed",
+   "Redeemed"
+  ],
+  [
+   "Loan on No. 0005: months",
+   "6",
+   "6"
+  ],
+  [
+   "Loan on No. 0005: principal",
+   "600.00",
+   "600.00"
+  ],
+  [
+   "Loan on No. 0005: interest held for the investor",
+   "45.00",
+   "45.00"
+  ],
+  [
+   "Loan on No. 0005: platform fee",
+   "6.00",
+   "6.00"
+  ],
+  [
+   "Loan on No. 0005: store fee",
+   "9.00",
+   "9.00"
+  ],
+  [
+   "Loan on No. 0005: weaver receives",
+   "540.00",
+   "540.00"
+  ],
+  [
+   "Loan on No. 0005: investor gets back (principal + interest)",
+   "645.00",
+   "645.00"
+  ],
+  [
+   "Loan on No. 0005: weaver's total cost (principal − payout)",
+   "60.00",
+   "60.00"
+  ],
+  [
+   "Loan on No. 0005: status",
+   "Repaid",
+   "Repaid"
+  ],
+  [
+   "Loan on No. 0005: investor",
+   "GCVBINDMVFUMQ3OBUVQGE6RFBWWBHSRKSLEQVZ6I7XQNQR2424HQOA2W",
+   "GCVBINDMVFUMQ3OBUVQGE6RFBWWBHSRKSLEQVZ6I7XQNQR2424HQOA2W"
+  ],
+  [
+   "Rug No. 0006 owner after the buy-out",
+   "GBWCNPACZXNZKJKB7NA2EHRCZTNWT3LQBEHTYPTVF5X6VZNU5RXPPLCN",
+   "GBWCNPACZXNZKJKB7NA2EHRCZTNWT3LQBEHTYPTVF5X6VZNU5RXPPLCN"
+  ],
+  [
+   "Loan on No. 0006: months",
+   "1",
+   "1"
+  ],
+  [
+   "Loan on No. 0006: status",
+   "BoughtOut",
+   "BoughtOut"
+  ],
+  [
+   "Kaya Rug House frozen",
+   "false",
+   "false"
+  ],
+  [
+   "Kaya Rug House open principal (USDC)",
+   "0.00",
+   "0.00"
+  ]
+ ]
+}
