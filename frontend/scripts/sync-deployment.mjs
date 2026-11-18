@@ -9,7 +9,7 @@
 // app. Only public data is read or written. Fails loudly on anything missing,
 // rather than leaving the app pointing at half an old deployment.
 import { Asset, StrKey } from "@stellar/stellar-sdk";
-import { readFileSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -18,6 +18,13 @@ const source = process.env.DARVA_MANIFEST
   ? resolve(process.env.DARVA_MANIFEST)
   : resolve(here, "../../docs/testnet-deployment.json");
 const target = resolve(here, "../lib/deployment.json");
+
+// Vercel uploads only frontend/, so docs/ isn't there: build from the
+// committed lib/deployment.json, which this script generated locally.
+if (process.env.VERCEL && !process.env.DARVA_MANIFEST && !existsSync(source) && existsSync(target)) {
+  console.log(`No ${source} on Vercel; using the committed lib/deployment.json.`);
+  process.exit(0);
+}
 
 const d = JSON.parse(readFileSync(source, "utf8"));
 
