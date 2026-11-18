@@ -26,7 +26,7 @@ Real footage: 0.0–54.8 s (93%). Total 58.85 s. Full-frame graphic cards: one (
 |---|---|
 | Problem and social impact | 0.0–5.6 (1,500 vs 600, from the app's worked example) |
 | Solution and differentiation | 5.6–8.0; 31.6–35.5 (60 vs 900); 44.1–51.5 (forced buy-back) |
-| Customer segment | 0.0–5.6 (a weaver selling to a local store); narration names the segment; trifold carries market size |
+| Customer segment | 0.0–5.6 (a weaver selling to a local store); narration names the segment |
 | Monetization | 16.9–25.3 (platform fee 6.00, store fee 9.00, investor 45.00, all on screen) |
 | User validation | Not in the video (no user testing yet); the presenter covers it live |
 | Meaningful use of Stellar | 8.0–16.9 (certificate in a Soroban contract; 0.0058 XLM fee); 25.3–31.6 (one contract holds certificate and money); 44.1–51.5 (the store's obligation enforced by the contract) |
