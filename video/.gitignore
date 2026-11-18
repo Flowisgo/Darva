@@ -13,3 +13,6 @@ assets/audio/*.wav
 # Scratch renders
 out/draft-*.mp4
 out/*.tmp.mp4
+
+# Previous masters, kept locally for comparison
+out/archive/

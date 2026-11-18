@@ -1,6 +1,6 @@
 // Review aids for a rendered master.
 //
-//   node scripts/review.mjs [out/rugdealer-demo-60s.mp4]
+//   node scripts/review.mjs [out/darva-demo-60s.mp4]
 //
 // Writes:
 //   out/contact-sheet.jpg           every 2 s, labelled with its timecode (one image)
@@ -13,7 +13,7 @@ import { join, resolve } from "node:path";
 import { ffmpegPath } from "../capture/lib.mjs";
 
 const ROOT = resolve(import.meta.dirname, "..");
-const file = resolve(process.argv[2] ?? join(ROOT, "out", "rugdealer-demo-60s.mp4"));
+const file = resolve(process.argv[2] ?? join(ROOT, "out", "darva-demo-60s.mp4"));
 const FF = ffmpegPath();
 const R = join(ROOT, ".cache", "review");
 rmSync(R, { recursive: true, force: true });

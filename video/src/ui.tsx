@@ -3,7 +3,7 @@ import { AbsoluteFill, Easing, interpolate, OffthreadVideo, staticFile, useCurre
 import { loadFont } from "@remotion/google-fonts/SchibstedGrotesk";
 import { clicks, pointer, type Box, type Log } from "./log";
 
-export const { fontFamily } = loadFont("normal", { weights: ["400", "500", "600", "700"], subsets: ["latin", "latin-ext"] });
+export const { fontFamily } = loadFont("normal", { weights: ["400", "500", "600", "700", "800"], subsets: ["latin", "latin-ext"] });
 
 export const C = {
   wall: "#e7e4dc",

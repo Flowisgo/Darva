@@ -1,0 +1,11 @@
+{
+  "name": "rugdealer-trifold",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "render": "node render.mjs"
+  },
+  "dependencies": {
+    "qrcode": "1.5.4"
+  }
+}

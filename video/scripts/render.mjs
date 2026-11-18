@@ -1,12 +1,13 @@
 // Render the demo and check it against the spec.
 //
-//   node scripts/render.mjs master     -> out/rugdealer-demo-60s.mp4 (silent) + .srt
-//   node scripts/render.mjs narrated   -> out/rugdealer-demo-60s-narrated.mp4 (needs assets/audio/narration.wav)
+//   node scripts/render.mjs master     -> out/darva-demo-60s.mp4 (silent) + .srt
+//   node scripts/render.mjs clean      -> out/darva-demo-60s-nocaptions.mp4 (silent, no captions)
+//   node scripts/render.mjs narrated  -> out/darva-demo-60s-narrated.mp4 (needs assets/audio/narration.wav)
 //   node scripts/render.mjs poster     -> out/poster.jpg
-//   node scripts/render.mjs srt        -> out/rugdealer-demo-60s.srt
+//   node scripts/render.mjs srt        -> out/darva-demo-60s.srt
 //   node scripts/render.mjs check <file> [--audio]
 import { execFileSync, spawnSync } from "node:child_process";
-import { existsSync, mkdirSync, readFileSync, rmSync, statSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, renameSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { ffmpegPath } from "../capture/lib.mjs";
 
@@ -38,8 +39,11 @@ function finalEncode(src, file, { audio = false } = {}) {
     "-c:v", "libx264", "-preset", "slow", "-crf", "18", "-profile:v", "high", "-r", "60",
     "-color_range", "tv", "-colorspace", "bt709", "-color_primaries", "bt709", "-color_trc", "bt709",
     ...(audio ? ["-c:a", "aac", "-b:a", "192k"] : ["-an"]),
-    "-movflags", "+faststart", file,
+    "-movflags", "+faststart", `${file}.tmp.mp4`,
   ]);
+  // Encode beside the target, then swap: a player holding the old file open
+  // (Windows locks it) fails the rename, not a 10-minute render.
+  renameSync(`${file}.tmp.mp4`, file);
   rmSync(src);
 }
 
@@ -82,24 +86,30 @@ async function srt() {
   };
   const caps = rows.filter((r) => r.captions).flatMap((r) => r.captions.map((c) => ({ from: c[0], to: Math.min(Number(c[1]), r.total[1]), text: c[2] })));
   const body = caps.map((c, i) => `${i + 1}\n${ts(c.from)} --> ${ts(c.to)}\n${c.text.split(" / ").join("\n")}\n`).join("\n");
-  writeFileSync(join(OUT, "rugdealer-demo-60s.srt"), body);
-  console.log(`wrote out/rugdealer-demo-60s.srt (${caps.length} captions)`);
+  writeFileSync(join(OUT, "darva-demo-60s.srt"), body);
+  console.log(`wrote out/darva-demo-60s.srt (${caps.length} captions)`);
 }
 
 const [what, arg] = process.argv.slice(2);
 if (what === "master") {
-  const f = join(OUT, "rugdealer-demo-60s.mp4");
+  const f = join(OUT, "darva-demo-60s.mp4");
   const mid = join(TMP, "master-intermediate.mp4");
   remotion(["render", "src/index.ts", "Demo", mid, "--muted", "--crf=10"]);
   finalEncode(mid, f);
   check(f);
   await srt();
+} else if (what === "clean") {
+  const f = join(OUT, "darva-demo-60s-nocaptions.mp4");
+  const mid = join(TMP, "clean-intermediate.mp4");
+  remotion(["render", "src/index.ts", "DemoNoCaptions", mid, "--muted", "--crf=10"]);
+  finalEncode(mid, f);
+  check(f);
 } else if (what === "narrated") {
   if (!existsSync(join(ROOT, "assets", "audio", "narration.wav"))) {
     console.error("No assets/audio/narration.wav. Record narration.md (see README), then run this again.");
     process.exit(2);
   }
-  const f = join(OUT, "rugdealer-demo-60s-narrated.mp4");
+  const f = join(OUT, "darva-demo-60s-narrated.mp4");
   const mid = join(TMP, "narrated-intermediate.mp4");
   remotion(["render", "src/index.ts", "DemoNarrated", mid, "--crf=10", "--audio-codec=aac"]);
   finalEncode(mid, f, { audio: true });
@@ -114,6 +124,6 @@ if (what === "master") {
 } else if (what === "check") {
   check(resolve(arg), { audio: process.argv.includes("--audio") });
 } else {
-  console.error("usage: node scripts/render.mjs master|narrated|poster|srt|check <file>");
+  console.error("usage: node scripts/render.mjs master|clean|narrated|poster|srt|check <file>");
   process.exit(2);
 }

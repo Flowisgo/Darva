@@ -49,7 +49,12 @@ export type Seg = {
   chip?: string | false;
   hidePointer?: boolean;
 };
-export type CaptionSpec = { at: number; to: number; lines: string[] };
+/**
+ * One caption card = one spoken unit. `lines` is the display split; the spoken
+ * text is the lines joined. `cue` (narration.md only) says what is on screen.
+ * Pace is enforced by scripts/caption-pace.mjs (`npm run pace`, run by `npm run render`).
+ */
+export type CaptionSpec = { at: number; to: number; lines: string[]; cue?: string };
 export type Beat = { id: string; desk?: string; note?: { text: string; to: number }; segs: Seg[]; captions: CaptionSpec[]; card?: "end"; cardSeconds?: number };
 
 const P = (clip: string, log: unknown, crop = 280, rings?: RingSpec[]): PopupSpec => ({ clip: `clips/${clip}/clip.mp4`, log: L(log), crop, rings });
@@ -70,6 +75,12 @@ const R = LOGS["weaver-repay"];
 const Hd = LOGS["store-handover"];
 const Y = LOGS.buyout;
 const A = LOGS.activity;
+// The activity page is still only from 3.33 s to 4.92 s of its clip (a second scroll
+// starts at 4.92 s). The ringed segment plays just that still stretch, slowed to fill
+// its 2.9 s on screen, so the rows never scroll out from under the rings.
+const A0 = at(A, "scrolled", 0) + 0.1;
+const ACT_SPEED = 1.33 / 2.9;
+const ta = (o: number) => A0 + o * ACT_SPEED;
 const Ld = LOGS.landing;
 
 const C1 = { s: 1, x: 960, y: 540 };
@@ -97,10 +108,7 @@ export const BEATS: Beat[] = [
         rings: [{ b: box(Ld, "worked-example"), from: at(Ld, "start") + 3.0, to: 5.8, pad: 8 }],
       },
     ],
-    captions: [
-      { at: 0.15, to: 2.85, lines: ["A buyer would pay about 1,500 USDC for Ayşe's rug.", "Finding that buyer takes months."] },
-      { at: 2.85, to: 5.6, lines: ["The store will pay 600 today.", "She needs the cash, so she sells cheap."] },
-    ],
+    captions: [{ at: 0.05, to: 5.4, lines: ["A buyer might pay 1,500 USDC.", "The store offers Ayşe 600 today."], cue: "Start with the picture; the worked example is ringed." }],
   },
   {
     id: "solution",
@@ -121,7 +129,7 @@ export const BEATS: Beat[] = [
         ],
       },
     ],
-    captions: [{ at: 0.1, to: 2.4, lines: ["RugDealer: she borrows that price instead,", "and keeps the rug until a real buyer comes."] }],
+    captions: [{ at: 0.0, to: 2.4, lines: ["So she borrows 600 instead."], cue: "The page scrolls to how a loan ends." }],
   },
   {
     id: "store-issue",
@@ -154,9 +162,9 @@ export const BEATS: Beat[] = [
       },
     ],
     captions: [
-      { at: 0.0, to: 3.0, lines: ["Kaya Rug House holds the rug and writes its certificate", "at 600 USDC, its own buying price."] },
-      { at: 3.0, to: 5.6, lines: ["Each step is signed in a real wallet.", "Network fee: 0.0058 XLM, a fraction of a cent."] },
-      { at: 5.6, to: 8.9, lines: [`Certificate No. ${String(RUG_NO).padStart(4, "0")} now lives in the contract.`, "Ayşe owns it. The store keeps the rug safe."] },
+      { at: 0.15, to: 3.02, lines: ["Kaya Rug House certifies the rug."], cue: "The store types the rug and its price." },
+      { at: 3.22, to: 6.09, lines: ["Kaya signs in a real wallet."], cue: "The Varial window is open; its fee is ringed." },
+      { at: 6.29, to: 8.75, lines: ["Ayşe now owns the certificate."], cue: "The new certificate appears, ringed: On Testnet." },
     ],
   },
   {
@@ -186,8 +194,8 @@ export const BEATS: Beat[] = [
       { clip: "weaver-borrow", from: at(B, "done:ask"), to: at(B, "done:ask") + 1.0, speed: 1, cam: push(22, 23.3, 1070, 480, 1.04, 1.06) },
     ],
     captions: [
-      { at: 0.0, to: 3.0, lines: ["Ayşe borrows the store's price for 6 months.", "In this demo, 1 month lasts 1 minute."] },
-      { at: 3.0, to: 8.4, lines: ["Fees come off once: she receives 540.00 USDC today,", "≈ 24,300 TRY, and the rug is still hers."] },
+      { at: 0.05, to: 3.33, lines: ["Ayşe borrows 600 USDC for 6 months."], cue: "She picks 6 months; the fees update." },
+      { at: 3.53, to: 8.08, lines: ["Fees come off once, up front.", "She gets 540.00 USDC."], cue: "The fee breakdown is ringed, then she signs in Varial." },
     ],
   },
   {
@@ -223,7 +231,10 @@ export const BEATS: Beat[] = [
         rings: [{ b: { x: 235, y: 430, width: 1451, height: 220 }, from: at(I, "done:lend") + 0.15, to: at(I, "done:lend") + 1.7, pad: 6, label: "Running" }],
       },
     ],
-    captions: [{ at: 0.1, to: 5.7, lines: ["Deniz funds the whole loan in one transaction,", "and will get back 645.00 USDC."] }],
+    captions: [
+      { at: 0.0, to: 3.28, lines: ["Deniz lends 600 and gets 645.00 back."], cue: "The request is ringed: 45.00 interest, 645.00 back." },
+      { at: 3.48, to: 5.98, lines: ["One transaction funds the loan."], cue: "Deniz signs in Varial; the loan turns Running." },
+    ],
   },
   {
     id: "repay-collect",
@@ -273,9 +284,9 @@ export const BEATS: Beat[] = [
       },
     ],
     captions: [
-      { at: 0.0, to: 3.9, lines: ["A buyer turns up: she repays 600 USDC.", "The loan cost her 60, not the 900 lost selling cheap."] },
-      { at: 3.9, to: 8.2, lines: ["To collect the rug she signs her half,", "then Kaya Rug House co-signs."] },
-      { at: 8.2, to: 12.5, lines: ["Two signatures close the certificate.", "The rug goes home with Ayşe."] },
+      { at: 0.0, to: 3.28, lines: ["A buyer turns up. Ayşe repays 600."], cue: "The running loan is ringed; she clicks Repay." },
+      { at: 3.48, to: 7.57, lines: ["The loan cost $60.", "Selling cheap would lose $900."], cue: "She collects: Varial asks her to sign the redeem." },
+      { at: 7.77, to: 12.27, lines: ["Two signatures close the certificate.", "Ayşe takes the rug home."], cue: "The store opens her link and co-signs." },
     ],
   },
   {
@@ -307,8 +318,8 @@ export const BEATS: Beat[] = [
       },
     ],
     captions: [
-      { at: 0.0, to: 3.6, lines: ["No repayment? The store must buy the rug", "at the price it set. The contract enforces it."] },
-      { at: 3.6, to: 7.3, lines: ["That's why it can't lowball her,", "and the investor is repaid from the purchase."] },
+      { at: 0.0, to: 4.5, lines: ["No repayment? The store must buy", "at its own price."], cue: "A second rug, overdue; the store clicks Buy." },
+      { at: 4.7, to: 7.16, lines: ["The store can't lowball her."], cue: "Bought by this store; its own price is ringed." },
     ],
   },
   {
@@ -318,21 +329,28 @@ export const BEATS: Beat[] = [
       { clip: "activity", from: 1.3, to: at(A, "scrolled", 0) + 0.1, speed: 2, chip: false },
       {
         clip: "activity",
-        from: at(A, "scrolled", 0) + 0.1,
-        to: at(A, "scrolled", 0) + 3.0,
-        speed: 1,
-        cam: push(3.6, 6.5, 1000, 360, 1.0, 1.05),
-        // Rows measured on the held frame after the first scroll (activity clip, 5.0 s).
+        from: A0,
+        to: A0 + 1.33,
+        speed: ACT_SPEED,
+        chip: false,
+        cam: push(ta(0.03), ta(2.9), 1000, 360, 1.0, 1.05),
+        // Rows measured on the still frame after the first scroll (activity clip, 3.33–4.92 s).
         rings: [
-          { b: { x: 450, y: 560, width: 1250, height: 78 }, from: at(A, "scrolled", 0) + 0.2, to: at(A, "scrolled", 0) + 3.0, pad: 4 },
-          { b: { x: 450, y: 458, width: 1250, height: 78 }, from: at(A, "scrolled", 0) + 0.9, to: at(A, "scrolled", 0) + 3.0, pad: 4 },
-          { b: { x: 450, y: 42, width: 1250, height: 78 }, from: at(A, "scrolled", 0) + 1.6, to: at(A, "scrolled", 0) + 3.0, pad: 4 },
+          { b: { x: 450, y: 560, width: 1250, height: 78 }, from: ta(0.1), to: ta(2.9), pad: 4 },
+          { b: { x: 450, y: 458, width: 1250, height: 78 }, from: ta(0.8), to: ta(2.9), pad: 4 },
+          { b: { x: 450, y: 42, width: 1250, height: 78 }, from: ta(1.5), to: ta(2.9), pad: 4 },
         ],
       },
     ],
-    captions: [{ at: 0.0, to: 4.0, lines: ["Every step above is a Testnet transaction.", "Each line here links to its own."] }],
+    captions: [{ at: 0.1, to: 3.79, lines: ["Each line here links to its own transaction."], cue: "The activity feed scrolls; three lines are ringed." }],
   },
-  { id: "end", segs: [], captions: [], card: "end", cardSeconds: 4.1 },
+  {
+    id: "end",
+    segs: [],
+    captions: [{ at: 0.0, to: 4.1, lines: ["Every step is a Testnet transaction", "you can check."], cue: "End card: the rug, the contract ID, the URL." }],
+    card: "end",
+    cardSeconds: 4.1,
+  },
 ];
 
 export const TX_ON_SCREEN = (state as { txs: { beat: string; hash: string }[] }).txs.filter((t) =>

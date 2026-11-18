@@ -9,6 +9,7 @@ export const Root: React.FC = () => {
     <>
       <Composition id="Demo" component={Demo} durationInFrames={total} fps={FPS} width={1920} height={1080} defaultProps={{ narrated: false }} />
       <Composition id="DemoNarrated" component={Demo} durationInFrames={total} fps={FPS} width={1920} height={1080} defaultProps={{ narrated: true }} />
+      <Composition id="DemoNoCaptions" component={Demo} durationInFrames={total} fps={FPS} width={1920} height={1080} defaultProps={{ narrated: false, captions: false }} />
       <Still id="Poster" component={Poster} width={1920} height={1080} />
     </>
   );

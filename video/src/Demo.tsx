@@ -2,6 +2,7 @@ import React from "react";
 import { AbsoluteFill, Audio, Sequence, staticFile, useCurrentFrame } from "remotion";
 import deployment from "../../frontend/lib/deployment.json";
 import { EndCard } from "./EndCard";
+import { LandingWordmark } from "./Rebrand";
 import { across } from "./log";
 import { BEATS, LOGS, RUG_NO, TX_ON_SCREEN, type Beat, type Seg } from "./timeline";
 import { C, Caption, Chip, ClipLayer, Pointer, Ring, VarialWindow, fontFamily } from "./ui";
@@ -36,6 +37,7 @@ const SegView: React.FC<{ seg: Seg }> = ({ seg }) => {
     <ClipLayer src={`clips/${seg.clip}/clip.mp4`} from={seg.from} speed={seg.speed} cam={seg.cam}>
       {(t) => (
         <>
+          {seg.clip === "landing" && <LandingWordmark t={t} />}
           {seg.rings?.map((r, i) => <Ring key={i} b={r.b} t={t} from={r.from} to={r.to} label={r.label} labelSide={r.labelSide} pad={r.pad} />)}
           <Pointer log={log} t={t} hidden={seg.hidePointer} />
         </>
@@ -56,7 +58,7 @@ const PopupView: React.FC<{ seg: Seg; dur: number }> = ({ seg, dur }) => {
 
 const speedText = (s: number) => `${Number.isInteger(s) ? s : s.toFixed(1)}×`;
 
-export const Demo: React.FC<{ narrated?: boolean }> = ({ narrated = false }) => {
+export const Demo: React.FC<{ narrated?: boolean; captions?: boolean }> = ({ narrated = false, captions = true }) => {
   const f = useCurrentFrame();
   const { placed } = layout();
   return (
@@ -65,7 +67,7 @@ export const Demo: React.FC<{ narrated?: boolean }> = ({ narrated = false }) => 
         <React.Fragment key={beat.id}>
           {beat.card === "end" ? (
             <Sequence from={start} durationInFrames={dur}>
-              <EndCard contract={deployment.contract} url="rugdealer.vercel.app" txCount={TX_ON_SCREEN.length} rugNo={RUG_NO} />
+              <EndCard contract={deployment.contract} url="darva.vercel.app" txCount={TX_ON_SCREEN.length} rugNo={RUG_NO} />
             </Sequence>
           ) : (
             segs.map(({ seg, start: s0, dur: d }, i) => (
@@ -97,9 +99,10 @@ export const Demo: React.FC<{ narrated?: boolean }> = ({ narrated = false }) => 
               {beat.note.text}
             </Chip>
           )}
-          {beat.captions.map((c, i) => (
-            <Caption key={i} lines={c.lines} f={f} from={start + frames(c.at)} to={Math.min(start + dur, start + frames(c.to))} />
-          ))}
+          {captions &&
+            beat.captions.map((c, i) => (
+              <Caption key={i} lines={c.lines} f={f} from={start + frames(c.at)} to={Math.min(start + dur, start + frames(c.to))} />
+            ))}
         </React.Fragment>
       ))}
       {narrated && <Audio src={staticFile("audio/narration.wav")} />}

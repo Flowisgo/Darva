@@ -13,5 +13,5 @@ Real clicks, real wallet, real chain. Playwright drove the production build of t
 ## More
 
 - [`video/storyboard.md`](../video/storyboard.md): beat sheet, and which second serves which judging criterion
-- [`video/narration.md`](../video/narration.md): the presenter's script, timed to the cut
+- [`video/narration.md`](../video/narration.md): the presenter's script, the captions word for word, generated from the cut by `npm run pace`
 - [`video/README.md`](../video/README.md): one-command re-render after a copy change (`cd video && npm run render`), re-capture, and known limits

@@ -30,7 +30,7 @@ export const Poster: React.FC = () => {
         }}
       />
       <div style={{ position: "absolute", left: 80, bottom: 64, color: "#fff" }}>
-        <div style={{ fontSize: 34, fontWeight: 600, color: C.saffron }}>RugDealer · live on Stellar Testnet</div>
+        <div style={{ fontSize: 34, fontWeight: 600, color: C.saffron }}>Darva · live on Stellar Testnet</div>
         <div style={{ fontSize: 76, fontWeight: 700, letterSpacing: -1.5, lineHeight: 1.05, marginTop: 8 }}>Borrow against your rug. Don't sell it cheap.</div>
       </div>
     </AbsoluteFill>

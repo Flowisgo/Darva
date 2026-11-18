@@ -1,74 +1,69 @@
 1
-00:00:00,150 --> 00:00:02,850
-A buyer would pay about 1,500 USDC for Ayşe's rug.
-Finding that buyer takes months.
+00:00:00,050 --> 00:00:05,400
+A buyer might pay 1,500 USDC.
+The store offers Ayşe 600 today.
 
 2
-00:00:02,850 --> 00:00:05,600
-The store will pay 600 today.
-She needs the cash, so she sells cheap.
+00:00:05,600 --> 00:00:08,000
+So she borrows 600 instead.
 
 3
-00:00:05,700 --> 00:00:08,000
-RugDealer: she borrows that price instead,
-and keeps the rug until a real buyer comes.
+00:00:08,170 --> 00:00:11,030
+Kaya Rug House certifies the rug.
 
 4
-00:00:08,020 --> 00:00:11,020
-Kaya Rug House holds the rug and writes its certificate
-at 600 USDC, its own buying price.
+00:00:11,230 --> 00:00:14,100
+Kaya signs in a real wallet.
 
 5
-00:00:11,020 --> 00:00:13,620
-Each step is signed in a real wallet.
-Network fee: 0.0058 XLM, a fraction of a cent.
+00:00:14,300 --> 00:00:16,770
+Ayşe now owns the certificate.
 
 6
-00:00:13,620 --> 00:00:16,920
-Certificate No. 0005 now lives in the contract.
-Ayşe owns it. The store keeps the rug safe.
+00:00:16,980 --> 00:00:20,270
+Ayşe borrows 600 USDC for 6 months.
 
 7
-00:00:16,930 --> 00:00:19,930
-Ayşe borrows the store's price for 6 months.
-In this demo, 1 month lasts 1 minute.
+00:00:20,470 --> 00:00:25,020
+Fees come off once, up front.
+She gets 540.00 USDC.
 
 8
-00:00:19,930 --> 00:00:25,330
-Fees come off once: she receives 540.00 USDC today,
-≈ 24,300 TRY, and the rug is still hers.
+00:00:25,330 --> 00:00:28,620
+Deniz lends 600 and gets 645.00 back.
 
 9
-00:00:25,430 --> 00:00:31,030
-Deniz funds the whole loan in one transaction,
-and will get back 645.00 USDC.
+00:00:28,820 --> 00:00:31,320
+One transaction funds the loan.
 
 10
-00:00:31,550 --> 00:00:35,450
-A buyer turns up: she repays 600 USDC.
-The loan cost her 60, not the 900 lost selling cheap.
+00:00:31,550 --> 00:00:34,830
+A buyer turns up. Ayşe repays 600.
 
 11
-00:00:35,450 --> 00:00:39,750
-To collect the rug she signs her half,
-then Kaya Rug House co-signs.
+00:00:35,030 --> 00:00:39,120
+The loan cost $60.
+Selling cheap would lose $900.
 
 12
-00:00:39,750 --> 00:00:44,050
+00:00:39,320 --> 00:00:43,820
 Two signatures close the certificate.
-The rug goes home with Ayşe.
+Ayşe takes the rug home.
 
 13
-00:00:44,070 --> 00:00:47,670
-No repayment? The store must buy the rug
-at the price it set. The contract enforces it.
+00:00:44,070 --> 00:00:48,570
+No repayment? The store must buy
+at its own price.
 
 14
-00:00:47,670 --> 00:00:51,370
-That's why it can't lowball her,
-and the investor is repaid from the purchase.
+00:00:48,770 --> 00:00:51,230
+The store can't lowball her.
 
 15
-00:00:51,450 --> 00:00:55,450
-Every step above is a Testnet transaction.
-Each line here links to its own.
+00:00:51,550 --> 00:00:55,230
+Each line here links to its own transaction.
+
+16
+00:00:55,480 --> 00:00:59,580
+Every step is a Testnet transaction
+you can check.
