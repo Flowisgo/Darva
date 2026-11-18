@@ -75,7 +75,7 @@ Screenshot capture in the pane was flaky at full frame, so I verified other view
 Setup, once:
 
 1. Install Freighter in Chrome and switch it to **Testnet**.
-2. Import the demo accounts into Freighter. The secrets are in the Stellar CLI config at `~/.rugdealer-demo/config` (identities `rd-admin`, `rd-store`, `rd-store2`, `rd-weaver`, `rd-investor`). For example, `stellar --config-dir ~/.rugdealer-demo/config keys secret rd-weaver`, then use Freighter's "Import using secret key". I did not run this.
+2. Import the demo accounts into Freighter. The secrets are in the Stellar CLI config at `~/.darva-demo/config` (identities `rd-admin`, `rd-store`, `rd-store2`, `rd-weaver`, `rd-investor`). For example, `stellar --config-dir ~/.darva-demo/config keys secret rd-weaver`, then use Freighter's "Import using secret key". I did not run this.
 3. `cd frontend && npm run dev` and open `http://localhost:3000`. Connect Freighter and allow the site.
 
 Do the flows in this order. Each step names the account Freighter must have selected.
@@ -128,7 +128,7 @@ Warning: this freezes the store for good. `rd-store2` is already frozen and can'
 
 1. **Public URL.** Milestone 4 says "deployed to a public URL". I didn't deploy anything (no push, nothing outward). The app is fully client-side; `/rug/[id]` is the only dynamic route. Vercel with root `frontend/` should work as is. Which host do you want?
 2. **Event history is ~7 days.** The testnet RPC keeps about 7 days of events, so `/activity`, timelines and the discovery of stores that aren't in the deployment file fade after a week. The app says so when it happens. See `docs/frontend-contract-requests.md` for an optional `list_stores` view. Otherwise, redeploy before the demo.
-3. **Demo names.** I named the demo accounts Kaya Rug House (store), Bazaar Corner Rugs (store2), Ayşe the weaver, Deniz the investor, and RugDealer platform, all in `lib/deployment.ts`. Change them if you prefer others.
+3. **Demo names.** I named the demo accounts Kaya Rug House (store), Bazaar Corner Rugs (store2), Ayşe the weaver, Deniz the investor, and Darva platform, all in `lib/deployment.ts`. Change them if you prefer others.
 4. **Look-around mode** (`?as=`) wasn't in the plan. Keep it or remove it?
 5. `.claude/launch.json` at the repo root (dev-server config for the desktop app's browser) is left untracked on purpose.
 

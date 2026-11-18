@@ -1,6 +1,6 @@
 # Demo video
 
-**[`video/out/rugdealer-demo-60s.mp4`](../video/out/rugdealer-demo-60s.mp4)**: 59.58 s, 1920×1080, 60 fps, H.264, silent with burned-in captions. Subtitles: [`.srt`](../video/out/rugdealer-demo-60s.srt). Thumbnail: [`poster.jpg`](../video/out/poster.jpg). Every frame at a glance: [`contact-sheet.jpg`](../video/out/contact-sheet.jpg).
+**[`video/out/darva-demo-60s.mp4`](../video/out/darva-demo-60s.mp4)**: 58.85 s, 1920×1080, 60 fps, H.264, silent with burned-in captions. Subtitles: [`.srt`](../video/out/darva-demo-60s.srt). Thumbnail: [`poster.jpg`](../video/out/poster.jpg). Every frame at a glance: [`contact-sheet.jpg`](../video/out/contact-sheet.jpg).
 
 ## What it shows
 

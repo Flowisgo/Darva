@@ -162,9 +162,9 @@ export const BEATS: Beat[] = [
       },
     ],
     captions: [
-      { at: 0.15, to: 3.02, lines: ["Kaya Rug House certifies the rug."], cue: "The store types the rug and its price." },
-      { at: 3.22, to: 6.09, lines: ["Kaya signs in a real wallet."], cue: "The Varial window is open; its fee is ringed." },
-      { at: 6.29, to: 8.75, lines: ["Ayşe now owns the certificate."], cue: "The new certificate appears, ringed: On Testnet." },
+      { at: 0.18, to: 3.05, lines: ["Kaya Rug House certifies the rug."], cue: "The store types the rug and its price." },
+      { at: 3.25, to: 6.12, lines: ["Kaya signs in a real wallet."], cue: "The Varial window is open; its fee is ringed." },
+      { at: 6.3, to: 8.7, lines: ["Ayşe now owns the certificate."], cue: "The new certificate appears, ringed: On Testnet." },
     ],
   },
   {
@@ -194,8 +194,8 @@ export const BEATS: Beat[] = [
       { clip: "weaver-borrow", from: at(B, "done:ask"), to: at(B, "done:ask") + 1.0, speed: 1, cam: push(22, 23.3, 1070, 480, 1.04, 1.06) },
     ],
     captions: [
-      { at: 0.05, to: 3.33, lines: ["Ayşe borrows 600 USDC for 6 months."], cue: "She picks 6 months; the fees update." },
-      { at: 3.53, to: 8.08, lines: ["Fees come off once, up front.", "She gets 540.00 USDC."], cue: "The fee breakdown is ringed, then she signs in Varial." },
+      { at: 0.2, to: 3.48, lines: ["Ayşe borrows 600 USDC for 6 months."], cue: "She picks 6 months; the fees update." },
+      { at: 3.68, to: 8.13, lines: ["Fees come off once, up front.", "She gets 540.00 USDC."], cue: "The fee breakdown is ringed, then she signs in Varial." },
     ],
   },
   {
@@ -232,8 +232,8 @@ export const BEATS: Beat[] = [
       },
     ],
     captions: [
-      { at: 0.0, to: 3.28, lines: ["Deniz lends 600 and gets 645.00 back."], cue: "The request is ringed: 45.00 interest, 645.00 back." },
-      { at: 3.48, to: 5.98, lines: ["One transaction funds the loan."], cue: "Deniz signs in Varial; the loan turns Running." },
+      { at: 0.18, to: 3.46, lines: ["Deniz lends 600 and gets 645.00 back."], cue: "The request is ringed: 45.00 interest, 645.00 back." },
+      { at: 3.63, to: 6.03, lines: ["One transaction funds the loan."], cue: "Deniz signs in Varial; the loan turns Running." },
     ],
   },
   {
@@ -284,9 +284,9 @@ export const BEATS: Beat[] = [
       },
     ],
     captions: [
-      { at: 0.0, to: 3.28, lines: ["A buyer turns up. Ayşe repays 600."], cue: "The running loan is ringed; she clicks Repay." },
-      { at: 3.48, to: 7.57, lines: ["The loan cost $60.", "Selling cheap would lose $900."], cue: "She collects: Varial asks her to sign the redeem." },
-      { at: 7.77, to: 12.27, lines: ["Two signatures close the certificate.", "Ayşe takes the rug home."], cue: "The store opens her link and co-signs." },
+      { at: 0.12, to: 3.4, lines: ["A buyer turns up. Ayşe repays 600."], cue: "The running loan is ringed; she clicks Repay." },
+      { at: 3.57, to: 7.66, lines: ["The loan cost $60.", "Selling cheap would lose $900."], cue: "She collects: Varial asks her to sign the redeem." },
+      { at: 7.83, to: 12.18, lines: ["Two signatures close the certificate.", "Ayşe takes the rug home."], cue: "The store opens her link and co-signs." },
     ],
   },
   {
@@ -318,8 +318,8 @@ export const BEATS: Beat[] = [
       },
     ],
     captions: [
-      { at: 0.0, to: 4.5, lines: ["No repayment? The store must buy", "at its own price."], cue: "A second rug, overdue; the store clicks Buy." },
-      { at: 4.7, to: 7.16, lines: ["The store can't lowball her."], cue: "Bought by this store; its own price is ringed." },
+      { at: 0.2, to: 4.7, lines: ["No repayment? The store must buy", "at its own price."], cue: "A second rug, overdue; the store clicks Buy." },
+      { at: 5.0, to: 7.46, lines: ["The store can't lowball her."], cue: "Bought by this store; its own price is ringed." },
     ],
   },
   {

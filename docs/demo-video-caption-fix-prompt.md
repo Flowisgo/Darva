@@ -1,4 +1,4 @@
-# Task: fix the caption pacing in the RugDealer demo video
+# Task: fix the caption pacing in the Darva demo video
 
 **Path convention.** Run from the repository root (`C:\Users\User\rug-dealer`). Paths written as `video/…` are the video project; paths written inside a `video/` step (`src/timeline.ts`, `scripts/…`, `node scripts/render.mjs`) are relative to `video/`. Everything else (`docs/…`, `README.md`, `frontend/…`) is relative to the repo root.
 
@@ -73,7 +73,7 @@ If a beat genuinely cannot hold its line — the 2.3 s "solution" beat is the ob
 2. **Rewrite the copy to the budget**, beat by beat, keeping the story arc and every number. Use the existing `narration.md` as raw material — it is already ~120 words at ~150 wpm and was written to be spoken — then tighten it to the ceiling above.
 3. **Re-time in `src/timeline.ts`**: keep the existing `{ at, to, lines }` schema, beat-relative seconds, so `Demo.tsx` needs no change. One spoken unit per card; `lines` is display only (max 2 lines, max 9 words per line, max ~96 characters total, including the digits). Place cards so the fade ends as the speech should begin and the card leaves within 0.6 s of it ending.
 4. **Generate `narration.md` from the same array** — one row per card, `| start–end | say | cue |`, with the cue being what is on screen (e.g. "the Varial window opens on 'real wallet'"). Regenerate the `.srt` from the timeline as before.
-5. **Render only the master:** `node scripts/render.mjs master` (≈10 minutes; Remotion's own Chromium and ffmpeg are installed — do not fetch anything). **Do not run `npm run capture`, `npm run verify`, `npm run all`, or Remotion Studio.** Archive the current file first: `out/archive/rugdealer-demo-60s-v1.mp4`. Regenerate the `.srt`. The poster has no caption on it — skip it.
+5. **Render only the master:** `node scripts/render.mjs master` (≈10 minutes; Remotion's own Chromium and ffmpeg are installed — do not fetch anything). **Do not run `npm run capture`, `npm run verify`, `npm run all`, or Remotion Studio.** Archive the current file first: `out/archive/darva-demo-60s-v1.mp4`. Regenerate the `.srt`. The poster has no caption on it — skip it.
 6. **Look at the result.** Extract one frame 0.9 s after each card's start at 480 px wide into `.cache/pace/`, assemble a contact sheet, and read every card. Then check the rendered `.srt` back against `timeline.ts`: same count, same words, no card under 2.2 s, no card over 2.6 w/s.
 
 ## 4. Copy rules for a read-aloud script

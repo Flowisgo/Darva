@@ -8,7 +8,7 @@ import "./globals.css";
 const sans = Schibsted_Grotesk({ subsets: ["latin", "latin-ext"], variable: "--font-sans", display: "swap" });
 
 export const metadata: Metadata = {
-  title: { default: "RugDealer", template: "%s | RugDealer" },
+  title: { default: "Darva", template: "%s | Darva" },
   description: "Weavers borrow against a finished rug held at a store. A Stellar Testnet prototype.",
 };
 

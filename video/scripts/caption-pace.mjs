@@ -112,7 +112,7 @@ if (!process.argv.includes("--check")) {
     "",
     "- To record the narrated master: read this table over the silent master in one take (48 kHz WAV, starting at 0.0 s), save it as `assets/audio/narration.wav`, and run `npm run render:narrated`.",
     '- If asked "is this real?": every click is the real app and every signature is a real Varial approval on Stellar Testnet; the hashes are in [verification.md](verification.md) and the contract ID is on the end card.',
-    "- The buy-out beat is a second rug (No. 0006) on a 1-month loan; in this demo 1 month lasts 1 minute. The chip on screen says so. Mention it only if someone asks.",
+    "- The buy-out beat is a second rug (No. 0005) on a 1-month loan; in this demo 1 month lasts 1 minute. The chip on screen says so. Mention it only if someone asks.",
     "",
   ].join("\n");
   writeFileSync(join(ROOT, "narration.md"), md);

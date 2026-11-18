@@ -1,11 +1,11 @@
-# RugDealer
+# Darva
 
 Weavers can borrow against a finished rug instead of selling it cheaply. This is a working prototype on Stellar Testnet: a Soroban contract and a web app with one desk for each role.
 
-**Live app:** [rugdealer.vercel.app](https://rugdealer.vercel.app)
-**Contract on Stellar Testnet:** [`CCX3Z3DJ…4M2J`](https://stellar.expert/explorer/testnet/contract/CCX3Z3DJ7KS6YCSWQCIOJWFZCB76A7SD7LJI6BHDILO5FGSI6ZJJ4M2J)
+**Live app:** [darvarugs.vercel.app](https://darvarugs.vercel.app)
+**Contract on Stellar Testnet:** [`CCX3Z3DJ…4M2J`](https://stellar.expert/explorer/testnet/contract/CBJVX327NQLL5YSFIOCFOK4WVW2F7CJUN4WUTT53CDU4D5S3OLIJNLMS)
 
-![The RugDealer landing page with the worked example](frontend/screenshots/landing-1280.jpg)
+![The Darva landing page with the worked example](frontend/screenshots/landing-1280.jpg)
 
 This project addresses the challenge's **Problem Space 1: Access to Fair Financial Assets and Affordable Financing**.
 
@@ -56,7 +56,7 @@ A real buyer would pay about $1,500 for the rug. The store's buying price is $60
 
 ## What runs on Stellar
 
-- **One Soroban contract** ([`contracts/rugdealer`](contracts/rugdealer)) does the following:
+- **One Soroban contract** ([`contracts/darva`](contracts/darva)) does the following:
   - records stores, rug certificates and loans
   - moves test USDC
   - enforces the settlement windows: store buy-out on `[end, end + 7 days)`, investor claim from `end + 7 days`
@@ -102,7 +102,7 @@ In this demo deployment, **1 loan month is 60 seconds** and the store's buy-out 
 | Item | Value |
 |---|---|
 | Network | Stellar Testnet |
-| RugDealer contract | `CCX3Z3DJ7KS6YCSWQCIOJWFZCB76A7SD7LJI6BHDILO5FGSI6ZJJ4M2J` |
+| Darva contract | `CBJVX327NQLL5YSFIOCFOK4WVW2F7CJUN4WUTT53CDU4D5S3OLIJNLMS` |
 | Test USDC (contract) | `CCKKWM4ROXHPJAALYDXWL676MUB6OKGSWAZUOTB5SJIBWQ3B5ZDQZ3OM` |
 | Test USDC (asset) | `USDC:GAWNPX6FZB7B7TZP6WC2H6L7AOYRXPBRDBWPISSAIFQPZX7GAQO3TWRY` |
 
@@ -124,7 +124,7 @@ Demo accounts (public keys only):
 
 | Name in the app | Role | Public key |
 |---|---|---|
-| RugDealer platform | Platform admin and fee recipient | `GCXRZRWAXQ2HDXIUAC5BZRZOLMD3RGLU42K64VHWCQV57CGXJWQTVCIZ` |
+| Darva platform | Platform admin and fee recipient | `GCXRZRWAXQ2HDXIUAC5BZRZOLMD3RGLU42K64VHWCQV57CGXJWQTVCIZ` |
 | Kaya Rug House | Store | `GBWCNPACZXNZKJKB7NA2EHRCZTNWT3LQBEHTYPTVF5X6VZNU5RXPPLCN` |
 | Bazaar Corner Rugs | Store, frozen after the missed-buy-out demo | `GDWBZD65XOYVVDMQHOST5SEQH4ZBXZTADY3NJIOGMYSYYVGK5RAFZ5RQ` |
 | Ayşe the weaver | Weaver | `GBH4TKU2HPW7PGY5BCDU73E3PMZUK7TQ7RVDHP5QDTK23BHKW2XDGOQF` |
@@ -157,7 +157,7 @@ The contract has its own tests:
 cargo test
 ```
 
-To deploy a fresh contract and run the scripted repay, buy-out and claim scenarios, see [`docs/testnet-demo.md`](docs/testnet-demo.md). This requires Python 3.10+ and the Stellar CLI. Secret keys stay in `~/.rugdealer-demo/config`, outside the repository.
+To deploy a fresh contract and run the scripted repay, buy-out and claim scenarios, see [`docs/testnet-demo.md`](docs/testnet-demo.md). This requires Python 3.10+ and the Stellar CLI. Secret keys stay in `~/.darva-demo/config`, outside the repository.
 
 ### Deploying the web app
 
@@ -183,7 +183,7 @@ npm run smoke
 ## Repository layout
 
 ```text
-contracts/rugdealer/   Soroban contract and its tests (Rust)
+contracts/darva/   Soroban contract and its tests (Rust)
 scripts/testnet.py     Testnet deploy and scripted demo scenarios
 docs/                  Mechanism guide, contract interface, deployment records
 frontend/              Next.js web app

@@ -41,9 +41,9 @@ export type TxResult = { hash: string; value: unknown };
 // Sent-but-unconfirmed transactions, kept across reloads. A list keyed by
 // transaction hash: two actions (e.g. in two tabs) never overwrite each
 // other, and confirming one never clears another.
-const PENDING_KEY = `rugdealer:${CONTRACT_ID}:pending-list`;
+const PENDING_KEY = `darva:${CONTRACT_ID}:pending-list`;
 /** The single-slot record earlier versions kept; read once and folded in. */
-const LEGACY_KEY = `rugdealer:${CONTRACT_ID}:pending`;
+const LEGACY_KEY = `darva:${CONTRACT_ID}:pending`;
 
 const isPending = (p: unknown): p is Pending =>
   !!p && typeof p === "object" && /^[0-9a-f]{64}$/.test(String((p as Pending).hash)) && typeof (p as Pending).at === "number";

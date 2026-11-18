@@ -1,8 +1,8 @@
 #![cfg(test)]
 
 use crate::{
-    Error, FrozenReason, LoanCancelled, LoanRequested, LoanStatus, RugClaimed, RugDealer,
-    RugDealerClient, RugMinted, RugRedeemed, RugStatus, StoreFrozen,
+    Error, FrozenReason, LoanCancelled, LoanRequested, LoanStatus, RugClaimed, Darva,
+    DarvaClient, RugMinted, RugRedeemed, RugStatus, StoreFrozen,
 };
 use soroban_sdk::testutils::{Address as _, Events as _, Ledger, MockAuth, MockAuthInvoke};
 use soroban_sdk::token::{Client as TokenClient, StellarAssetClient};
@@ -52,7 +52,7 @@ impl TestEnv {
             .set_flag(soroban_sdk::testutils::IssuerFlags::RevocableFlag);
         let usdc = usdc_sac.address();
         let contract = env.register(
-            RugDealer,
+            Darva,
             (
                 admin.clone(),
                 usdc.clone(),
@@ -86,8 +86,8 @@ impl TestEnv {
         test
     }
 
-    fn client(&self) -> RugDealerClient<'_> {
-        RugDealerClient::new(&self.env, &self.contract)
+    fn client(&self) -> DarvaClient<'_> {
+        DarvaClient::new(&self.env, &self.contract)
     }
 
     fn balance(&self, address: &Address) -> i128 {
@@ -257,7 +257,7 @@ fn constructor(
     let admin = Address::generate(&env);
     let fee_recipient = Address::generate(&env);
     let _ = env.register(
-        RugDealer,
+        Darva,
         (
             admin,
             usdc,

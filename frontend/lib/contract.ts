@@ -1,4 +1,4 @@
-// Typed wrappers around the RugDealer contract. Every read is a simulation:
+// Typed wrappers around the Darva contract. Every read is a simulation:
 // no signature, no fee, nothing submitted.
 import {
   Account,

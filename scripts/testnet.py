@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Deploy RugDealer to Stellar testnet and run the demo scenarios.
+"""Deploy Darva to Stellar testnet and run the demo scenarios.
 
 Secrets stay in the Stellar CLI config directory outside this repository.
 The script writes only public data to docs/testnet-deployment.json and
@@ -35,8 +35,8 @@ if hasattr(sys.stdout, "reconfigure"):
     sys.stderr.reconfigure(errors="replace")
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_STATE = Path.home() / ".rugdealer-demo"
-STATE = Path(os.environ.get("RUGDEALER_STATE", DEFAULT_STATE)).expanduser().resolve()
+DEFAULT_STATE = Path.home() / ".darva-demo"
+STATE = Path(os.environ.get("DARVA_STATE", DEFAULT_STATE)).expanduser().resolve()
 CONFIG = STATE / "config"
 LOGS = STATE / "logs"
 MANIFEST = ROOT / "docs" / "testnet-deployment.json"
@@ -74,7 +74,7 @@ def utc_now() -> str:
 def ensure_state() -> None:
     if STATE == ROOT or ROOT in STATE.parents:
         raise SystemExit(
-            f"RUGDEALER_STATE must be outside the repository (got {STATE})."
+            f"DARVA_STATE must be outside the repository (got {STATE})."
         )
     for path in (STATE, CONFIG, LOGS):
         path.mkdir(parents=True, exist_ok=True)
@@ -191,7 +191,7 @@ def send(
 
 
 def http_json(url: str) -> Any:
-    request = urllib.request.Request(url, headers={"User-Agent": "rugdealer-demo/1.0"})
+    request = urllib.request.Request(url, headers={"User-Agent": "darva-demo/1.0"})
     with urllib.request.urlopen(request, timeout=25) as response:
         return json.load(response)
 
@@ -330,7 +330,7 @@ def ensure_usdc(
 
 def build_wasm() -> Path:
     run_cli("build", ["contract", "build"], timeout=900)
-    wasm = ROOT / "target" / "wasm32v1-none" / "release" / "rugdealer.wasm"
+    wasm = ROOT / "target" / "wasm32v1-none" / "release" / "darva.wasm"
     if not wasm.exists():
         raise RuntimeError(f"wasm not found at {wasm}")
     return wasm
@@ -527,6 +527,15 @@ def balance_snapshot(manifest: dict[str, Any], roles: list[str]) -> dict[str, in
     return snapshot
 
 
+# What each scenario's rug is called on chain. They show on the desks and in
+# the activity feed, so they read like real rugs.
+DEMO_RUGS = {
+    "repay": "Wool kilim, saffron medallion, 140 × 200 cm",
+    "buyout": "Wool kilim, indigo stripes, 100 × 150 cm",
+    "claim": "Cotton flatweave, walnut border, 120 × 170 cm",
+}
+
+
 def run_scenario(manifest: dict[str, Any], name: str) -> dict[str, Any]:
     contract = manifest["contract"]
     accounts = manifest["accounts"]
@@ -545,7 +554,7 @@ def run_scenario(manifest: dict[str, Any], name: str) -> dict[str, Any]:
         )
 
     print(f"\n[{name}] store={store_role} months={months} price={price / UNIT:g} USDC")
-    description = f"RugDealer demo - {name}"
+    description = DEMO_RUGS[name]
     rug_id = int(
         send(
             contract,

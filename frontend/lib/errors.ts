@@ -42,7 +42,7 @@ export class AppError extends Error {
   constructor(
     message: string,
     readonly code?: number,
-    readonly source: "rugdealer" | "usdc" | "auth" | "wallet" | "network" | "unknown" = "unknown",
+    readonly source: "darva" | "usdc" | "auth" | "wallet" | "network" | "unknown" = "unknown",
   ) {
     super(message);
     this.name = "AppError";
@@ -66,7 +66,7 @@ export function attributedErrors(raw: string): { contract: string; code: number 
   });
 }
 
-/** Words that point at the USDC token rather than RugDealer. */
+/** Words that point at the USDC token rather than Darva. */
 const TOKEN_HINT = /balance|insufficient|trustline|trust line|authori[sz]ed|allowance/i;
 
 /** Turn a simulation or transaction error string into a plain message. */
@@ -75,7 +75,7 @@ export function explainError(raw: string): AppError {
   const usdc = hits.find((h) => h.contract === USDC_ID);
   if (usdc && USDC_ERRORS[usdc.code]) return new AppError(USDC_ERRORS[usdc.code], usdc.code, "usdc");
   const ours = hits.find((h) => h.contract === CONTRACT_ID);
-  if (ours && CONTRACT_ERRORS[ours.code]) return new AppError(CONTRACT_ERRORS[ours.code].message, ours.code, "rugdealer");
+  if (ours && CONTRACT_ERRORS[ours.code]) return new AppError(CONTRACT_ERRORS[ours.code].message, ours.code, "darva");
   // An error code with no contract named next to it. A failing token call
   // inside our contract surfaces with the token's code, so only read it as
   // ours when nothing points at the token.
@@ -84,7 +84,7 @@ export function explainError(raw: string): AppError {
     const code = Number(bare[1]);
     const tokenish = raw.includes(USDC_ID) || TOKEN_HINT.test(raw);
     if (tokenish && USDC_ERRORS[code]) return new AppError(USDC_ERRORS[code], code, "usdc");
-    if (!tokenish && !hits.length && CONTRACT_ERRORS[code]) return new AppError(CONTRACT_ERRORS[code].message, code, "rugdealer");
+    if (!tokenish && !hits.length && CONTRACT_ERRORS[code]) return new AppError(CONTRACT_ERRORS[code].message, code, "darva");
   }
   if (/Error\(Auth,/.test(raw))
     return new AppError("This needs a signature from a different account. Switch accounts in Varial.", undefined, "auth");

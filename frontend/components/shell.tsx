@@ -28,7 +28,7 @@ export function Header() {
       <header className="site-header">
         <Link href="/" className="wordmark">
           <Kilim seed={0} fringe="none" />
-          RugDealer
+          Darva
         </Link>
         <nav className="site-nav" aria-label="Main">
           {NAV.map((n) => (
@@ -47,7 +47,7 @@ export function Header() {
 export function Footer() {
   return (
     <footer className="site-footer">
-      <span>RugDealer prototype. No real money moves.</span>
+      <span>Darva prototype. No real money moves.</span>
       <a href={contractUrl} target="_blank" rel="noreferrer">
         Contract on the explorer
       </a>

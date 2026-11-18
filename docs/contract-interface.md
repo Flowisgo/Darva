@@ -1,8 +1,8 @@
-# RugDealer contract interface
+# Darva contract interface
 
 Status: **milestones 1–3 complete** — contract core, buy-out/claim path, and testnet deployment.
 
-The contract is a single Soroban contract at `contracts/rugdealer`. It records stores, rug certificates, loans, USDC payments, and settlement state. Rugs are **not** Stellar assets: each rug is an NFT-style record inside the contract with a contract-assigned `id`. USDC is a Stellar Asset Contract (SAC).
+The contract is a single Soroban contract at `contracts/darva`. It records stores, rug certificates, loans, USDC payments, and settlement state. Rugs are **not** Stellar assets: each rug is an NFT-style record inside the contract with a contract-assigned `id`. USDC is a Stellar Asset Contract (SAC).
 
 ## Deployment parameters
 
@@ -459,14 +459,14 @@ Investor credit fallback:
 
 ## Testnet deployment
 
-Deployed and exercised on Stellar Testnet on 2026-11-12.
+Deployed and exercised on Stellar Testnet on 2026-11-18.
 
 | Item | Value |
 |---|---|
 | Network | `testnet` |
-| Contract ID | `CCX3Z3DJ7KS6YCSWQCIOJWFZCB76A7SD7LJI6BHDILO5FGSI6ZJJ4M2J` |
-| Deploy ledger | `5,698,981` |
-| Deploy transaction | `c7d13f5a55bf572e2afe933ce2f6254e7edf988b610917b7d0acad45ed08bc71` |
+| Contract ID | `CBJVX327NQLL5YSFIOCFOK4WVW2F7CJUN4WUTT53CDU4D5S3OLIJNLMS` |
+| Deploy ledger | `5,788,953` |
+| Deploy transaction | `1100a9b8fe6e06d2e0556aa05a704ed03b62e3b166a6dfcdc434c1bc6cae9092` |
 | USDC SAC address | `CCKKWM4ROXHPJAALYDXWL676MUB6OKGSWAZUOTB5SJIBWQ3B5ZDQZ3OM` |
 | USDC classic asset | `USDC:GAWNPX6FZB7B7TZP6WC2H6L7AOYRXPBRDBWPISSAIFQPZX7GAQO3TWRY` |
 | USDC issuer | `GAWNPX6FZB7B7TZP6WC2H6L7AOYRXPBRDBWPISSAIFQPZX7GAQO3TWRY` |
@@ -496,7 +496,7 @@ Public deployment data:
 - `docs/testnet-deployment.json` — contract, USDC, public keys, parameters, transaction hashes
 - `docs/testnet-demo-results.json` — exact balance deltas and final loan/rug state for the repay, buy-out, and claim scenarios
 - `docs/testnet-demo.md` — deployment/demo runbook, script commands, and the current public testnet addresses
-- `https://stellar.expert/explorer/testnet/contract/CCX3Z3DJ7KS6YCSWQCIOJWFZCB76A7SD7LJI6BHDILO5FGSI6ZJJ4M2J`
+- `https://stellar.expert/explorer/testnet/contract/CBJVX327NQLL5YSFIOCFOK4WVW2F7CJUN4WUTT53CDU4D5S3OLIJNLMS`
 
-Secret keys are **not** in this repository. The demo identities live in the Stellar CLI config directory `~/.rugdealer-demo/config` (created by `scripts/testnet.py`). Only public keys are recorded here.
+Secret keys are **not** in this repository. The demo identities live in the Stellar CLI config directory `~/.darva-demo/config` (created by `scripts/testnet.py`). Only public keys are recorded here.
 

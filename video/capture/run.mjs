@@ -154,6 +154,12 @@ async function record(name, fn) {
 // under "Your loans" as a running loan with a due-date countdown.
 const running = (id) => page.locator("article.entry").filter({ hasText: no(id) }).filter({ hasText: "Due in" }).first();
 const card = (id) => page.locator("article.entry").filter({ hasText: no(id) }).first();
+/** The weaver's signed hand-over link, from the code box on the rug's card. */
+async function handoverFromCard(id) {
+  const code = await card(id).locator('textarea[aria-label="Hand-over code"]').inputValue({ timeout: 5000 }).catch(() => "");
+  return code ? `${APP}/store?handover=${code}` : "";
+}
+
 async function latestRugId() {
   const t = await page.locator("article.entry .entry-no").allInnerTexts();
   return Math.max(...t.map((x) => Number(x.replace(/\D/g, ""))).filter(Boolean));
@@ -283,13 +289,19 @@ const BEATS = {
       await actor.click(card(id).getByRole("button", { name: "Copy link for the store" }), "copy-link");
       await card(id).getByText("Link copied").waitFor({ timeout: 5000 });
       actor.mark("link-copied");
-      state.handoverLink = await page.evaluate(() => navigator.clipboard.readText());
+      // The clipboard reads back empty when the window lost focus; the code is also on the card.
+      state.handoverLink = (await page.evaluate(() => navigator.clipboard.readText())) || (await handoverFromCard(id));
       saveState();
       await sleep(1600);
     });
   },
 
   async "store-handover"() {
+    if (!state.handoverLink && state.rugHappy) {
+      await as("weaver", "/weaver");
+      state.handoverLink = await handoverFromCard(state.rugHappy);
+      saveState();
+    }
     const link = state.handoverLink;
     if (!link) throw new Error("no hand-over link; run weaver-repay first");
     await selectAccount(ctx, extUrl, NAMES.store);

@@ -72,7 +72,7 @@ describe("decoding real testnet events", () => {
 
   it("rug_minted", () => {
     const e = fromFixture("rug_minted");
-    expect(e).toMatchObject({ kind: "rug_minted", rugId: 1n, store: ACCOUNTS.store, weaver: ACCOUNTS.weaver, price: 6_000_000_000n, description: "RugDealer demo - repay" });
+    expect(e).toMatchObject({ kind: "rug_minted", rugId: 1n, store: ACCOUNTS.store, weaver: ACCOUNTS.weaver, price: 6_000_000_000n, description: "Wool kilim, saffron medallion, 140 × 200 cm" });
     expect(text(e)).toBe("Kaya Rug House took in rug No. 0001 from Ayşe the weaver and priced it at 600.00 USDC.");
   });
 

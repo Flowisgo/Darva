@@ -34,7 +34,7 @@ export type DemoRole = "platform" | "store" | "weaver" | "investor" | "issuer";
 
 /** Friendly names for the demo accounts, so nobody has to read addresses. */
 export const DEMO_NAMES: Record<string, { name: string; role: DemoRole }> = {
-  [ACCOUNTS.admin]: { name: "RugDealer platform", role: "platform" },
+  [ACCOUNTS.admin]: { name: "Darva platform", role: "platform" },
   [ACCOUNTS.issuer]: { name: "Test USDC issuer", role: "issuer" },
   [ACCOUNTS.store]: { name: "Kaya Rug House", role: "store" },
   [ACCOUNTS.store2]: { name: "Bazaar Corner Rugs", role: "store" },

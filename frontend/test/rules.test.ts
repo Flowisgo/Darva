@@ -147,7 +147,7 @@ describe("contract errors", () => {
     expect(e.source).toBe("usdc");
     expect(e.message).not.toMatch(/no rug/);
   });
-  it("still reads a bare code as RugDealer's when nothing points at the token", () => {
+  it("still reads a bare code as Darva's when nothing points at the token", () => {
     expect(explainError("HostError: Error(Contract, #10)").message).toBe("There is no rug with that number.");
   });
   it("attributes each code to the contract named before it", () => {

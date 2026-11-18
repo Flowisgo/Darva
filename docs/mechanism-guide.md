@@ -1,8 +1,8 @@
-# Mechanism Guide for RugDealer v2
+# Mechanism Guide for Darva v2
 
 > **This is the current, authoritative version of the guide.** It replaces any earlier PDF or draft (older drafts said the platform fee was 0.25% per month, loans ran 3–12 months, and repayment ended at the end date; all three are superseded). The deployed contract implements this version. Where the guide was silent or ambiguous, the decisions in [Agreed decisions](#agreed-decisions) at the end apply. The contract's exact API is in [contract-interface.md](contract-interface.md).
 
-RugDealer lets a rug weaver who needs money borrow against a finished rug instead of selling it. A rug store prices the rug at what it would normally pay to buy it, which is far below what a real buyer pays, then holds the rug and issues a token for it. An investor lends the weaver exactly that price through a Soroban contract. If the weaver repays in time, they get the rug back and can sell it to a real buyer whenever they find one. If not, the store buys the rug at that same price, and the investor is repaid from the purchase.
+Darva lets a rug weaver who needs money borrow against a finished rug instead of selling it. A rug store prices the rug at what it would normally pay to buy it, which is far below what a real buyer pays, then holds the rug and issues a token for it. An investor lends the weaver exactly that price through a Soroban contract. If the weaver repays in time, they get the rug back and can sell it to a real buyer whenever they find one. If not, the store buys the rug at that same price, and the investor is repaid from the purchase.
 
 ## Actors
 
@@ -149,7 +149,7 @@ Real anchor integration, KYC flows, mainnet, multiple investors per loan, second
 
 Settled while building milestones 1–3, where the guide was silent or ambiguous. The deployed contract implements all of them.
 
-1. The v2 contract was built fresh from `main` at `contracts/rugdealer`. The `codex/*` branches are an older design.
+1. The v2 contract was built fresh from `main` at `contracts/darva`. The `codex/*` branches are an older design.
 2. `claim_rug` pays the investor the held interest plus the rug token. "Investor receives exactly loan + interest" applies to the repay and buy-out paths.
 3. Rounding: interest, platform fee and store fee each round down. The remainder goes to the weaver, so funded amount = interest + platform fee + store fee + weaver payout exactly.
 4. Every Money Rules number is a deployment parameter: `interest_bps_per_year` (1500), `platform_fee_bps` (100), `store_fee_bps_per_month` (25), `max_months` (12), `month_seconds` (30 days; the demo deployment uses 60 seconds), `buyout_window_seconds` (7 days; the demo uses a short window), and a `fee_recipient` address.

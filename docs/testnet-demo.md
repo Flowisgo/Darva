@@ -1,6 +1,6 @@
 # Testnet deployment and demo
 
-`scripts/testnet.py` deploys RugDealer to Stellar Testnet and runs the three settlement paths. It is cross-platform Python 3.10+ and drives the Stellar CLI. All secret keys stay in a Stellar CLI config directory outside the repository.
+`scripts/testnet.py` deploys Darva to Stellar Testnet and runs the three settlement paths. It is cross-platform Python 3.10+ and drives the Stellar CLI. All secret keys stay in a Stellar CLI config directory outside the repository.
 
 ## Prerequisites
 
@@ -14,11 +14,11 @@
 By default the script uses:
 
 ```text
-~/.rugdealer-demo/config      Stellar CLI identities (contains secrets)
-~/.rugdealer-demo/logs        command logs
+~/.darva-demo/config      Stellar CLI identities (contains secrets)
+~/.darva-demo/logs        command logs
 ```
 
-Override the state directory with `RUGDEALER_STATE` if needed. The script refuses to use a directory inside the repository. The repository only receives public data:
+Override the state directory with `DARVA_STATE` if needed. The script refuses to use a directory inside the repository. The repository only receives public data:
 
 ```text
 docs/testnet-deployment.json
@@ -30,7 +30,7 @@ Never commit the state directory or paste a secret key into a doc.
 ## Commands
 
 ```bash
-# Build, create/fund accounts, deploy test USDC and RugDealer, register stores
+# Build, create/fund accounts, deploy test USDC and Darva, register stores
 python scripts/testnet.py deploy
 
 # Run all three scenarios (repay, buy-out, claim)
@@ -64,12 +64,12 @@ python scripts/testnet.py status
 2. Funds accounts with testnet XLM through Friendbot.
 3. Deploys the test `USDC:<issuer>` SAC and creates USDC trustlines for the demo accounts.
 4. Mints demo USDC to the admin, stores, weaver, and investor.
-5. Builds `target/wasm32v1-none/release/rugdealer.wasm`.
-6. Deploys RugDealer with all Money Rules as constructor parameters.
+5. Builds `target/wasm32v1-none/release/darva.wasm`.
+6. Deploys Darva with all Money Rules as constructor parameters.
 7. Registers both stores with the configured USDC principal limit.
 8. Writes `docs/testnet-deployment.json` with public keys, IDs, parameters, deploy transaction hash, deploy ledger, and transaction hashes.
 
-A second `deploy` creates a new RugDealer contract with the same accounts. This resets all per-contract store and rug state, including frozen flags.
+A second `deploy` creates a new Darva contract with the same accounts. This resets all per-contract store and rug state, including frozen flags.
 
 ## Demo scenarios
 
@@ -95,7 +95,7 @@ The live demo exercises normal investor receipt. The deauthorized-investor credi
 
 | Item | Value |
 |---|---|
-| Contract | `CCX3Z3DJ7KS6YCSWQCIOJWFZCB76A7SD7LJI6BHDILO5FGSI6ZJJ4M2J` |
+| Contract | `CBJVX327NQLL5YSFIOCFOK4WVW2F7CJUN4WUTT53CDU4D5S3OLIJNLMS` |
 | Deploy ledger | `5,698,981` |
 | USDC SAC | `CCKKWM4ROXHPJAALYDXWL676MUB6OKGSWAZUOTB5SJIBWQ3B5ZDQZ3OM` |
 | USDC asset | `USDC:GAWNPX6FZB7B7TZP6WC2H6L7AOYRXPBRDBWPISSAIFQPZX7GAQO3TWRY` |

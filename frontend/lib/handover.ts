@@ -28,7 +28,7 @@ export type Handover = {
   auth: string[];
   /** Last ledger the holder's signature is valid for. */
   until: number;
-  /** The RugDealer contract the code was signed for. Codes from before this
+  /** The Darva contract the code was signed for. Codes from before this
    * field existed belong to an earlier deployment. */
   contract?: string;
 };
@@ -38,7 +38,7 @@ const VALID_LEDGERS = 17_280;
 
 /** Where the holder's signed code is kept between page loads. Scoped to the
  * contract, because rug numbers restart when the contract is redeployed. */
-export const handoverKey = (rugId: bigint | string) => `rugdealer:${CONTRACT_ID}:handover:${rugId}`;
+export const handoverKey = (rugId: bigint | string) => `darva:${CONTRACT_ID}:handover:${rugId}`;
 
 export type HandoverCheck =
   | "old-contract" // signed for an earlier deployment of the contract

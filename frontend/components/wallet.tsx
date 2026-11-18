@@ -20,7 +20,7 @@ type Wallet = {
 };
 
 const Ctx = createContext<Wallet | null>(null);
-const FORGET_KEY = "rugdealer:forget-wallet";
+const FORGET_KEY = "darva:forget-wallet";
 
 export function WalletProvider({ children }: { children: ReactNode }) {
   const [address, setAddress] = useState<string | null>(null);

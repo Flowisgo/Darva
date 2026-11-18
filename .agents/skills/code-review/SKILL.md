@@ -10,7 +10,7 @@ Two-axis review of the diff between `HEAD` and a fixed point the user supplies:
 
 Both axes run as **parallel sub-agents** so they don't pollute each other's context, then this skill aggregates their findings.
 
-Use linked GitHub issues as the review specification when available. For a full RugDealer review, read the [mechanism guide](../../../docs/mechanism-guide.md), the [contract interface](../../../docs/contract-interface.md), and the [README](../../../README.md).
+Use linked GitHub issues as the review specification when available. For a full Darva review, read the [mechanism guide](../../../docs/mechanism-guide.md), the [contract interface](../../../docs/contract-interface.md), and the [README](../../../README.md).
 
 ## Process
 

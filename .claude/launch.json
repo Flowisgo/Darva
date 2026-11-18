@@ -2,10 +2,16 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "rugdealer-web",
+      "name": "darva-web",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["--prefix", "frontend", "run", "dev"],
       "port": 3000
+    },
+    {
+      "name": "darva-web-prod",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["frontend/node_modules/next/dist/bin/next", "start", "frontend", "--port", "3100"],
+      "port": 3100
     }
   ]
 }

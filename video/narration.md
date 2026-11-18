@@ -10,25 +10,25 @@ Say "Ayşe" as **EYE-sheh**. Say "USDC" as letters. Digits are read naturally: "
 |---|---|---|
 | 0.05–5.40 | A buyer might pay 1,500 USDC. The store offers Ayşe 600 today. | Start with the picture; the worked example is ringed. |
 | 5.60–8.00 | So she borrows 600 instead. | The page scrolls to how a loan ends. |
-| 8.17–11.03 | Kaya Rug House certifies the rug. | The store types the rug and its price. |
-| 11.23–14.10 | Kaya signs in a real wallet. | The Varial window is open; its fee is ringed. |
-| 14.30–16.77 | Ayşe now owns the certificate. | The new certificate appears, ringed: On Testnet. |
-| 16.98–20.27 | Ayşe borrows 600 USDC for 6 months. | She picks 6 months; the fees update. |
-| 20.47–25.02 | Fees come off once, up front. She gets 540.00 USDC. | The fee breakdown is ringed, then she signs in Varial. |
-| 25.33–28.62 | Deniz lends 600 and gets 645.00 back. | The request is ringed: 45.00 interest, 645.00 back. |
-| 28.82–31.32 | One transaction funds the loan. | Deniz signs in Varial; the loan turns Running. |
-| 31.55–34.83 | A buyer turns up. Ayşe repays 600. | The running loan is ringed; she clicks Repay. |
-| 35.03–39.12 | The loan cost $60. Selling cheap would lose $900. | She collects: Varial asks her to sign the redeem. |
-| 39.32–43.82 | Two signatures close the certificate. Ayşe takes the rug home. | The store opens her link and co-signs. |
-| 44.07–48.57 | No repayment? The store must buy at its own price. | A second rug, overdue; the store clicks Buy. |
-| 48.77–51.23 | The store can't lowball her. | Bought by this store; its own price is ringed. |
-| 51.55–55.23 | Each line here links to its own transaction. | The activity feed scrolls; three lines are ringed. |
-| 55.48–59.58 | Every step is a Testnet transaction you can check. | End card: the rug, the contract ID, the URL. |
+| 8.20–11.07 | Kaya Rug House certifies the rug. | The store types the rug and its price. |
+| 11.27–14.13 | Kaya signs in a real wallet. | The Varial window is open; its fee is ringed. |
+| 14.32–16.72 | Ayşe now owns the certificate. | The new certificate appears, ringed: On Testnet. |
+| 16.92–20.20 | Ayşe borrows 600 USDC for 6 months. | She picks 6 months; the fees update. |
+| 20.40–24.85 | Fees come off once, up front. She gets 540.00 USDC. | The fee breakdown is ringed, then she signs in Varial. |
+| 25.03–28.32 | Deniz lends 600 and gets 645.00 back. | The request is ringed: 45.00 interest, 645.00 back. |
+| 28.48–30.88 | One transaction funds the loan. | Deniz signs in Varial; the loan turns Running. |
+| 31.05–34.33 | A buyer turns up. Ayşe repays 600. | The running loan is ringed; she clicks Repay. |
+| 34.50–38.60 | The loan cost $60. Selling cheap would lose $900. | She collects: Varial asks her to sign the redeem. |
+| 38.77–43.12 | Two signatures close the certificate. Ayşe takes the rug home. | The store opens her link and co-signs. |
+| 43.32–47.82 | No repayment? The store must buy at its own price. | A second rug, overdue; the store clicks Buy. |
+| 48.12–50.58 | The store can't lowball her. | Bought by this store; its own price is ringed. |
+| 50.88–54.57 | Each line here links to its own transaction. | The activity feed scrolls; three lines are ringed. |
+| 54.75–58.85 | Every step is a Testnet transaction you can check. | End card: the rug, the contract ID, the URL. |
 
-16 cards, 121 words, 59.6 s. `npm run pace` checks every card's pace and rewrites this file; `npm run render` runs it first and stops if a card is too fast, too slow or too short.
+16 cards, 121 words, 58.9 s. `npm run pace` checks every card's pace and rewrites this file; `npm run render` runs it first and stops if a card is too fast, too slow or too short.
 
 ## Live delivery notes
 
 - To record the narrated master: read this table over the silent master in one take (48 kHz WAV, starting at 0.0 s), save it as `assets/audio/narration.wav`, and run `npm run render:narrated`.
 - If asked "is this real?": every click is the real app and every signature is a real Varial approval on Stellar Testnet; the hashes are in [verification.md](verification.md) and the contract ID is on the end card.
-- The buy-out beat is a second rug (No. 0006) on a 1-month loan; in this demo 1 month lasts 1 minute. The chip on screen says so. Mention it only if someone asks.
+- The buy-out beat is a second rug (No. 0005) on a 1-month loan; in this demo 1 month lasts 1 minute. The chip on screen says so. Mention it only if someone asks.

@@ -266,7 +266,7 @@ pub struct CreditWithdrawn {
 }
 
 #[contract]
-pub struct RugDealer;
+pub struct Darva;
 
 fn bump_instance(env: &Env) {
     env.storage()
@@ -466,7 +466,7 @@ fn calculate_quote(cfg: &Config, principal: i128, months: u32) -> Result<Quote, 
 }
 
 #[contractimpl]
-impl RugDealer {
+impl Darva {
     #[allow(clippy::too_many_arguments)]
     pub fn __constructor(
         env: Env,

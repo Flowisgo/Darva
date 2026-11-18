@@ -1,6 +1,6 @@
-# Task: build and render RugDealer's 60-second demo video
+# Task: build and render Darva's 60-second demo video
 
-You are working in the RugDealer repo. Build a **60-second demo video** for the Velocity *Blockchain Innovation Challenge powered by Stellar*, not a slideshow: it must show the working prototype doing real things on Stellar Testnet. Judge it the way a skeptical Stellar engineer would: every figure on screen should be checkable against the chain afterwards.
+You are working in the Darva repo. Build a **60-second demo video** for the Velocity *Blockchain Innovation Challenge powered by Stellar*, not a slideshow: it must show the working prototype doing real things on Stellar Testnet. Judge it the way a skeptical Stellar engineer would: every figure on screen should be checkable against the chain afterwards.
 
 Deliver a finished `.mp4` plus the code that produces it, so it can be re-rendered or re-cut after any copy change.
 
@@ -21,14 +21,14 @@ Facts you may rely on (verify against the repo before using them on screen):
 | Fact | Value |
 |---|---|
 | Contract | `CCX3Z3DJ7KS6YCSWQCIOJWFZCB76A7SD7LJI6BHDILO5FGSI6ZJJ4M2J` (Testnet) |
-| Live app | `rugdealer.vercel.app` |
+| Live app | `darvarugs.vercel.app` |
 | Demo rug | 600 USDC price; a real buyer would pay ~1,500 USDC |
 | 6-month loan | 45.00 interest, 6.00 platform fee, 9.00 store fee → weaver receives **540.00** |
 | Weaver repays | pays 600.00 → total cost **60.00**; investor receives **645.00** |
 | Local currency | 1 USDC ≈ 45 TRY (mocked), so 540.00 ≈ 24,300 TRY |
 | Demo clock | 1 loan month = 60 s; store buy-out window = 60 s |
 | Desks | `/store`, `/weaver`, `/investor`, `/platform`, `/activity`, `/rug/[id]` |
-| Demo accounts | Kaya Rug House (store), Ayşe the weaver, Deniz the investor, RugDealer platform |
+| Demo accounts | Kaya Rug House (store), Ayşe the weaver, Deniz the investor, Darva platform |
 
 ## 2. What is being scored (verbatim rubric, weighted)
 
@@ -71,9 +71,9 @@ video/
   src/                    # composition source (Remotion components, timeline, styles)
   assets/                 # raw clips, audio, generated cursor/ripple assets
   out/
-    rugdealer-demo-60s.mp4
-    rugdealer-demo-60s-narrated.mp4
-    rugdealer-demo-60s.srt
+    darva-demo-60s.mp4
+    darva-demo-60s-narrated.mp4
+    darva-demo-60s.srt
     poster.jpg            # 1920×1080 frame for the Devpost thumbnail
   storyboard.md           # beat sheet: time, screen, action, caption, rationale
   narration.md            # VO script with timecodes, readable live by the presenter
@@ -91,7 +91,7 @@ Work on a branch named `demo-video`. Do not touch `main` history, the deployment
 1. **Fresh state.** The Testnet RPC keeps ~7 days of events, so `/activity` may be nearly empty. Seed real history on the *existing* contract (keeps the ID matching the README) by issuing rugs and running `python scripts/testnet.py demo --scenario repay|buyout|claim`. Only redeploy if the contract is genuinely unusable — and if you do, run `npm run sync-deployment` and update every ID in `README.md`, `docs/testnet-demo.md`, `docs/frontend-status.md` and `contracts/`. Judges will notice a dead link.
 2. **Clean build for capture.** Record against `npm run build && npm start`, not `npm run dev`, so the dev indicator and HMR overlays are gone. Keep `npm run dev` for iteration.
 3. **Wallet automation.** Try, in this order, and stop at the first that gives you a real signature:
-   - **a. Automate Varial.** Playwright persistent Chromium context with the extension loaded (`--disable-extensions-except=… --load-extension=…`, headed; service workers need `chromium.launchPersistentContext`). Unlock the wallet once in that profile, switch it to Testnet, import the three demo accounts from `~/.rugdealer-demo/config`. The signature prompt is a separate extension page/window — catch it with `context.waitForEvent('page')` and click Approve there. Record it; a real wallet popup is the most credible 3 seconds in the video.
+   - **a. Automate Varial.** Playwright persistent Chromium context with the extension loaded (`--disable-extensions-except=… --load-extension=…`, headed; service workers need `chromium.launchPersistentContext`). Unlock the wallet once in that profile, switch it to Testnet, import the three demo accounts from `~/.darva-demo/config`. The signature prompt is a separate extension page/window — catch it with `context.waitForEvent('page')` and click Approve there. Record it; a real wallet popup is the most credible 3 seconds in the video.
    - **b. Ask for drop-in footage.** If the extension resists automation, write `video/assets/dropin/INSTRUCTIONS.md` with exact specs (1920×1080, no browser chrome, 60 fps or 30 fps, ≤ 20 s each, what to click, which account to have selected) and a file list for six clips: store issues, weaver borrows, investor lends, weaver repays, weaver collects + store co-signs, store buys out. Splice them in by filename; fall back to Phase 0 steps 3c for any clip not supplied.
    - **c. Honest fallback.** Use the real `?as=store|weaver|investor|platform` read-only desks for UI, drive the on-chain actions with `python scripts/testnet.py` (real transactions, real hashes), and show the resulting real state — `/activity` sentences, loan cards, balanced changes — plus the explorer proof. State plainly in `verification.md` that button presses were not captured and why. Never fake an extension popup, a signature, or a success banner.
 4. **Framing check.** The app was verified at 1280 px and 375 px but never at 1920. Screenshot every route at 1920×1080 first. If the layout stretches, present a 1440×900 capture on a subtle woven-texture backdrop inside the 16:9 frame rather than shipping a loose layout.
@@ -123,7 +123,7 @@ Steal this structure, then improve it after seeing the app. Captions below are w
 | 5 | 29.5–37.0 | `/investor` as Deniz: open request, `Lend 600.00 USDC` → balance drops. | "One investor funds the whole loan in one transaction." / "She pays 60 in fees, not 900 selling cheap." | Monetization, differentiation |
 | 6 | 37.0–45.0 | `/weaver`: countdown, `Repay 600.00 USDC`, `Collect the rug` → link → `/store` `Sign and hand over` → "Certificate closed" | "She repays from a real buyer and collects the rug — the store co-signs." | Trust, UX |
 | 7 | 45.0–52.0 | `/store` overdue loans: `Buy the rug for 600.00 USDC` → investor repaid. Highlight the store's own price on the certificate. | "No repayment? The store must buy back at the price it set." / "That's why it can't lowball her." | Differentiation, Stellar |
-| 8 | 52.0–60.0 | `/activity` plain-sentence feed, fast scroll; end card: contract ID chip, "Live on Stellar Testnet", `rugdealer.vercel.app` | "Every step is a Stellar transaction." / "Borrow against your rug. Don't sell it cheap." | Verifiable build |
+| 8 | 52.0–60.0 | `/activity` plain-sentence feed, fast scroll; end card: contract ID chip, "Live on Stellar Testnet", `darvarugs.vercel.app` | "Every step is a Stellar transaction." / "Borrow against your rug. Don't sell it cheap." | Verifiable build |
 
 Rules for the cut:
 
@@ -160,16 +160,16 @@ Render, then **look at the output** and fix it. Repeat until the video is genuin
 
 ## 11. Safety and repo hygiene
 
-- Secret keys live only in `~/.rugdealer-demo/config`; read them through the Stellar CLI, never echo, print, log, or screenshot them. Nothing secret enters git, the video, or `verification.md`.
+- Secret keys live only in `~/.darva-demo/config`; read them through the Stellar CLI, never echo, print, log, or screenshot them. Nothing secret enters git, the video, or `verification.md`.
 - `.gitignore` `video/node_modules`, `video/assets/*.webm`, `video/assets/*.wav`. Commit the source, the final mp4s, the srt and the poster.
 - Do not change app behaviour to make filming easier except a capture-only gate that is inert in production builds — and say so in `video/README.md`. The Vercel deployment must behave exactly as before.
 - Leave no dev server running at the end. Note any testnet state you created (rugs, loans) in `verification.md` so the team knows what the app will show judges.
 
 ## 12. Definition of done
 
-- [ ] `video/out/rugdealer-demo-60s.mp4` — 58–60 s, 1080p60, H.264, < 60 MB, silent, captions burned in
-- [ ] `video/out/rugdealer-demo-60s-narrated.mp4` and `narration.md` (or a written reason it is silent-only)
-- [ ] `poster.jpg`, `rugdealer-demo-60s.srt`
+- [ ] `video/out/darva-demo-60s.mp4` — 58–60 s, 1080p60, H.264, < 60 MB, silent, captions burned in
+- [ ] `video/out/darva-demo-60s-narrated.mp4` and `narration.md` (or a written reason it is silent-only)
+- [ ] `poster.jpg`, `darva-demo-60s.srt`
 - [ ] `storyboard.md` with a rubric→timestamp table (which second serves which criterion)
 - [ ] `verification.md` with every tx hash, ledger, and the check that confirms it
 - [ ] One command re-renders the video from committed source: `cd video && npm run render`
