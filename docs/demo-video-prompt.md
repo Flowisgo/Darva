@@ -20,7 +20,7 @@ Facts you may rely on (verify against the repo before using them on screen):
 
 | Fact | Value |
 |---|---|
-| Contract | `CCX3Z3DJ7KS6YCSWQCIOJWFZCB76A7SD7LJI6BHDILO5FGSI6ZJJ4M2J` (Testnet) |
+| Contract | `CBJVX327NQLL5YSFIOCFOK4WVW2F7CJUN4WUTT53CDU4D5S3OLIJNLMS` (Testnet) |
 | Live app | `darvarugs.vercel.app` |
 | Demo rug | 600 USDC price; a real buyer would pay ~1,500 USDC |
 | 6-month loan | 45.00 interest, 6.00 platform fee, 9.00 store fee → weaver receives **540.00** |

@@ -9,7 +9,7 @@ import { ActionButton, Countdown, Empty, ErrorBox, KV, LedgerRows, Loading, Part
 import { addr, i128, str, type Loan, type Rug, type Store } from "@/lib/contract";
 import { ACCOUNTS, DEMO_NAMES } from "@/lib/deployment";
 import { redeemOwnRug } from "@/lib/handover";
-import { amountProblem, formatLocal, parseUsdc, quoteLocally, rugNo } from "@/lib/money";
+import { amountProblem, AMOUNT_GUIDANCE, formatLocal, parseUsdc, quoteLocally, rugNo, usdcLabel } from "@/lib/money";
 import { latestLoanFor, loanPhase, LOAN_STATUS_TEXT, mintBlock, monthsText, openLoanFor, rugLabel, type Tone } from "@/lib/rules";
 import { invoke } from "@/lib/tx";
 import { useLedger, useNow, type Ledger } from "@/lib/use-ledger";
@@ -17,7 +17,7 @@ import { StrKey } from "@stellar/stellar-sdk";
 
 export default function StorePage() {
   const { viewer, lookingAs } = useViewer();
-  const { data, error, refresh } = useLedger();
+  const { data, error, refresh } = useLedger(viewer);
   const params = useSearchParams();
   const handover = params.get("handover");
 
@@ -65,17 +65,18 @@ function StoreDesk({ address, data, hasHandover }: { address: string; data: Ledg
     const p = loanPhase(l, now, win);
     return p === "buyout" || p === "claimable";
   });
-  const running = myLoans.filter((l) => loanPhase(l, now, win) === "running");
+  const running = myLoans.filter((l) => ["running", "checking"].includes(loanPhase(l, now, win)));
   const myRugs = data.rugs.filter((r) => r.store === address).sort((a, b) => Number(b.id - a.id));
   const rugById = new Map(data.rugs.map((r) => [r.id, r]));
 
   return (
     <>
       <StoreStatus store={store} reason={data.frozenReason[address]} />
+      {now === null && <p className="notice warn">Ledger time unavailable. Timed buy-out actions are disabled while the network is checked.</p>}
 
       <Section label="Overdue loans" count={overdue.length}>
         {overdue.length === 0 ? (
-          <Empty title="Nothing overdue.">When a loan passes its end date without repayment, it shows here with your buy-out window.</Empty>
+          <Empty title={now === null ? "Checking overdue loans…" : "Nothing overdue."}>When a loan passes its end date without repayment, it shows here with your buy-out window.</Empty>
         ) : (
           <div className="card-list">
             {overdue.map((l) => (
@@ -99,7 +100,7 @@ function StoreDesk({ address, data, hasHandover }: { address: string; data: Ledg
         </Section>
       )}
 
-      <Section label="Loans running" count={running.length}>
+      <Section label={now === null ? "Loans awaiting time check" : "Loans running"} count={running.length}>
         {running.length === 0 ? (
           <Empty title="No loans running.">Funded loans on your rugs show here until they're repaid or due.</Empty>
         ) : (
@@ -177,16 +178,16 @@ function StoreStatus({ store, reason }: { store: Store; reason?: "Platform" | "M
   );
 }
 
-function OverdueTicket({ loan, rug, now, win }: { loan: Loan; rug?: Rug; now: bigint; win: bigint }) {
+function OverdueTicket({ loan, rug, now, win }: { loan: Loan; rug?: Rug; now: bigint | null; win: bigint }) {
   const closes = loan.end_at! + win;
-  const open = now < closes;
+  const open = now !== null && now < closes;
   return (
     <RugCard id={loan.rug_id} name={rug?.description ?? rugNo(loan.rug_id)} tag={<Tag tone="late">Overdue</Tag>}>
       <div className="card-meta">
         <KV k="Weaver">
           <Party address={loan.weaver} />
         </KV>
-        <KV k="Investor">{loan.investor ? <Party address={loan.investor} /> : "—"}</KV>
+        <KV k="Investor">{loan.investor ? <Party address={loan.investor} /> : "â€”"}</KV>
         <KV k="Was due">
           <span className="mono">{whenSec(loan.end_at!)}</span>
         </KV>
@@ -334,11 +335,11 @@ function IssueForm({ store, data }: { store: Store; data: Ledger }) {
           />
           <span className="hint">
             {priceOk ? (
-              <span className="mono">≈ {formatLocal(units!)} TRY</span>
+              <span className="mono">{usdcLabel(units!)} · ≈ {formatLocal(units!)} TRY</span>
             ) : (
               <span className="error-text">{units === 0n ? "Enter a price above zero." : amountProblem(price)}</span>
             )}{" "}
-            What you'd normally pay for this rug. You must buy it at this price if the loan isn't repaid.
+            {AMOUNT_GUIDANCE} What you'd normally pay for this rug. You must buy it at this price if the loan isn't repaid.
           </span>
         </label>
         <ActionButton
